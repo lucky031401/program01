@@ -14,7 +14,7 @@ const intro2 = document.getElementById('intro_2')
 function initStats() {
     const stats = new Stats()
     stats.setMode(0)
-    document.getElementById('stats').appendChild(stats.domElement)
+    //document.getElementById('stats').appendChild(stats.domElement)
     return stats
 }
 

@@ -24,6 +24,7 @@ function createWall() {
         scene.add(mesh);
         walls.push(mesh)
         const halfExtents = new CANNON.Vec3(sizeX[i] / 2 + 250, 200, sizeZ[i] / 2 + 250)
+        if(i==0||i==5) halfExtents.x=sizeX[i] / 2 
         const boxShape = new CANNON.Box(halfExtents)
         const boxBody = new CANNON.Body({
             mass: 0,
@@ -86,7 +87,7 @@ let boxMeshes = []
 
 function createBoxes(count) {
     // Add boxes
-    const halfExtents = new CANNON.Vec3(500, 200, 1000)
+    const halfExtents = new CANNON.Vec3(10000, 200, 10000)
     const boxShape = new CANNON.Box(halfExtents)
     const boxGeometry = new THREE.BoxGeometry(
         halfExtents.x * 2,

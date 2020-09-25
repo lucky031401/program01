@@ -17,12 +17,14 @@ body {
 }
 
 #blocker {
+  -webkit-transform: translate(100%,100%);
+  transform: translate(100%,100%);
   position: absolute;
-  width: 200%;
-  height: 200%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 #instructions {
+  -webkit-transform: translate(100%,100%);
+  transform: translate(100%,100%);
   width: 100%;
   height: 100%;
   display: -webkit-box;
