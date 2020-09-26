@@ -35,7 +35,6 @@ function createWall() {
         boxBody.linearDamping = 0.9
         world.addBody(boxBody)
         wallMesh.push(boxBody)
-        console.dir(geometry)
     }
 }
 
@@ -161,7 +160,7 @@ function createGround() {
 
 //create celling
 function createCelling() {
-    const boxGeometry = new THREE.BoxGeometry(700, 1000, 10)
+    const boxGeometry = new THREE.BoxGeometry(1000, 1400, 10)
     var texture = new THREE.TextureLoader().load('./img/wall.jpg');
     var material = new THREE.MeshBasicMaterial({
         color: 0x222222,
@@ -170,16 +169,16 @@ function createCelling() {
     });
     boxGeometry.scale(-1, 1, 1);
     mesh = new THREE.Mesh(boxGeometry, material);
-    mesh.position.set(0, 420, 0)
+    mesh.position.set(0, 500, 0)
     mesh.rotation.x = Math.PI / 2
     mesh.castShadow = true
-    scene.add(mesh)
+    //scene.add(mesh)
 }
 
 
 function createLight() {
     var light = new THREE.HemisphereLight( 0xffffbb, 0x222222, 0.7 );
-    light.distance=200
+    light.distance=400
     light.position.set(0,200,-600)
     //scene.add( light );
     for(var i=0;i<8;i++){

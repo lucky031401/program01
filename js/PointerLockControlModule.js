@@ -4,7 +4,7 @@ function initPointerLockControls() {
   scene.add(controls.getObject())
 
   const blocker = document.getElementById('blocker')
-  const instructions = document.getElementById('instructions')
+  const start = document.getElementById('start')
   const havePointerLock =
     'pointerLockElement' in document ||
     'mozPointerLockElement' in document ||
@@ -18,17 +18,12 @@ function initPointerLockControls() {
         document.webkitPointerLockElement === element
       ) {
         controls.enabled = true
-        blocker.style.display = 'none'
       } else {
         controls.enabled = false
-        blocker.style.display = '-webkit-box'
-        blocker.style.display = '-moz-box'
-        blocker.style.display = 'box'
-        instructions.style.display = ''
+        navbar.style.display = ''
       }
     }
     const pointerlockerror = function(event) {
-      instructions.style.display = ''
     }
     // Hook pointer lock state change events
     document.addEventListener('pointerlockchange', pointerlockchange, false)
@@ -42,10 +37,12 @@ function initPointerLockControls() {
     document.addEventListener('mozpointerlockerror', pointerlockerror, false)
     document.addEventListener('webkitpointerlockerror', pointerlockerror, false)
     //取得控制
-    instructions.addEventListener(
+    start.addEventListener(
       'click',
       function(event) {
-        navIn.classList.add('visuallyhidden'); 
+        navbar.style.display="none"
+        navIn.classList.add('visuallyShow');   
+        navIn.classList.add('init'); 
       navIn.classList.remove('visuallyShow')  
       navIn.addEventListener('transitionend', function(e) {
         navIn.classList.add('hidden');
@@ -55,8 +52,6 @@ function initPointerLockControls() {
         passive: false
       });
         camMode=1
-        instructions.style.display = 'none'
-        // Ask the browser to lock the pointer
         element.requestPointerLock =
           element.requestPointerLock ||
           element.mozRequestPointerLock ||
@@ -94,8 +89,5 @@ function initPointerLockControls() {
       },
       false
     )
-  } else {
-    instructions.innerHTML =
-      '你的瀏覽器似乎不支援 Pointer Lock API，建議使用電腦版 Google Chrome 取得最佳體驗！'
-  }
+  } 
 }

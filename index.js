@@ -34,7 +34,7 @@ function init() {
     createBoxes(1)
     createCelling()
     createDraw()
-    addHelpers(scene)
+    //addHelpers(scene)
     stats = initStats()
     createLight()
     //createBoxes(10)
@@ -50,15 +50,11 @@ function init() {
     initPointerLockControls()
     // 產生苦力怕物體
     createSphere()
-    //createTower()
+    createTower()
     document.getElementById('video1').style.display = 'none'
 
-    lightHelper = new THREE.SpotLightHelper(spotLight);
-   // lightHelper.target = photos[1]
-    //scene.add(lightHelper);
-
-    var light = new THREE.AmbientLight(0xeeeeee); // soft white light
-    light.intensity = 1.3
+    var light = new THREE.AmbientLight(0xdddddd); // soft white light
+    light.intensity = 1.7
     scene.add(light);
     /*
     var rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
