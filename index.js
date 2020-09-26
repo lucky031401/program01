@@ -83,21 +83,7 @@ function render() {
         world.step(dt)
     }
     controls.update(Date.now() - time)
-    /*if(playerBody.position.x>250||playerBody.position.z>370||playerBody.position.x<-250||playerBody.position.z<-350){
-        if(camMode=1){
-        playerBody.position.set(0,0,270)
-    const blocker = document.getElementById('blocker')
-    const instructions = document.getElementById('instructions')
-    controls.enabled = false
-    blocker.style.display = '-webkit-box'
-    blocker.style.display = '-moz-box'
-    blocker.style.display = 'box'
-    instructions.style.display = ''
-    setCameraControl()
-    }
-    else setCameraControl()
-    }*/
-    //console.log(playerBody.position)
+    
     time = Date.now()
     for (var i = 0; i < 5; i++) walls[i].position.copy(wallMesh[i].position)
     //console.log(playerBody.position)

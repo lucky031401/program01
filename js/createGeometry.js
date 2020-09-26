@@ -37,7 +37,7 @@ function createWall() {
         world.addBody(boxBody)
         wallMesh.push(boxBody)
     }
-    var geometry = new THREE.BoxGeometry(30, 800, 3000);
+    var geometry = new THREE.BoxGeometry(30, 800, 3100);
         //var texture = new THREE.TextureLoader().load('./img/wall.jpg');
         var material = new THREE.MeshPhongMaterial({
             //map: texture,
@@ -47,12 +47,12 @@ function createWall() {
         });
         geometry.scale(-1, 1, 1);
         mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(1200, 400, -700)
+        mesh.position.set(1200, 400, -800)
         mesh.name = 'wall'
         mesh.castShadow = true
         scene.add(mesh);
         walls.push(mesh)
-        const halfExtents = new CANNON.Vec3(30 + 250, 200, 3000/2 + 250)
+        const halfExtents = new CANNON.Vec3(30 + 250, 200, 3100/2 + 250)
         const boxShape = new CANNON.Box(halfExtents)
         const boxBody = new CANNON.Body({
             mass: 0,
