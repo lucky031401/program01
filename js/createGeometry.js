@@ -9,6 +9,7 @@ const particleCount = 15000
 let points
 
 function createWall() {
+    //wall section1
     for (i = 0; i < 5; i++) {
         var geometry = new THREE.BoxGeometry(sizeX[i], 420, sizeZ[i]);
         var texture = new THREE.TextureLoader().load('./img/wall.jpg');
@@ -36,6 +37,32 @@ function createWall() {
         world.addBody(boxBody)
         wallMesh.push(boxBody)
     }
+    var geometry = new THREE.BoxGeometry(30, 420, 3000);
+        //var texture = new THREE.TextureLoader().load('./img/wall.jpg');
+        var material = new THREE.MeshPhongMaterial({
+            //map: texture,
+            color:0xeeeeee,
+            side: THREE.DoubleSide
+        });
+        geometry.scale(-1, 1, 1);
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(1200, 200, -700)
+        mesh.name = 'wall'
+        mesh.castShadow = true
+        scene.add(mesh);
+        walls.push(mesh)
+        const halfExtents = new CANNON.Vec3(30 + 250, 200, 3000/2 + 250)
+        const boxShape = new CANNON.Box(halfExtents)
+        const boxBody = new CANNON.Body({
+            mass: 0,
+            material: physicsMaterial
+        })
+        boxBody.addShape(boxShape)
+        boxBody.position.set(1200, 200, -700)
+        boxBody.linearDamping = 0.9
+        world.addBody(boxBody)
+        //wallMesh.push(boxBody)
+
 }
 
 
@@ -131,7 +158,7 @@ function createGround() {
     groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2)
     world.add(groundBody)
 
-    const groundGeometry = new THREE.PlaneGeometry(1000, 1400, 50, 50)
+    const groundGeometry = new THREE.PlaneGeometry(10000, 14000, 50, 50)
     const groundMaterial = new THREE.MeshLambertMaterial({
         color: 0xa5a5a5,
         metalness: 1,

@@ -53,8 +53,11 @@ function init() {
     createTower()
     document.getElementById('video1').style.display = 'none'
 
+    var hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+    hemiLight.position.set( 1000, 300, 1000 );
+    scene.add( hemiLight );
     var light = new THREE.AmbientLight(0xdddddd); // soft white light
-    light.intensity = 1.7
+    light.intensity = 1.3
     scene.add(light);
     /*
     var rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
