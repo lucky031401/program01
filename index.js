@@ -52,23 +52,16 @@ function init() {
     // 產生苦力怕物體
     createSphere()
     createTower()
+    
+    document.getElementById('video0').style.display = 'none'
     document.getElementById('video1').style.display = 'none'
-
+    document.getElementById('video2').style.display = 'none'
+    document.getElementById('video3').style.display = 'none'
     var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff );
     hemiLight.position.set( 1000, 300, 1000 );
-    scene.add( hemiLight );
+    //scene.add( hemiLight );
     var light = new THREE.AmbientLight(0xdddddd); // soft white light
-    //scene.add(light);
-    /*
-    var rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
-    rectLight.position.set( -350, 249, -700 );
-    rectLight.rotation.y=Math.PI/2
-    rectLight.lookAt( 0, 3, 0 );
-    scene.add( rectLight )
-
-    rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
-    rectLight.add( rectLightHelper );
-*/
+    scene.add(light);
 
     document.body.appendChild(renderer.domElement)
 }

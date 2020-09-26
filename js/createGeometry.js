@@ -206,7 +206,7 @@ function createCelling() {
 
 function createLight() {
     var light = new THREE.HemisphereLight( 0xffffbb, 0x222222, 0.7 );
-    light.distance=400
+    light.distance=300
     light.position.set(0,200,-600)
     //scene.add( light );
     for(var i=0;i<8;i++){
@@ -220,8 +220,9 @@ function createLight() {
   spotLight.target = photos[i]
   spotLight.castShadow = true;
   spotLight.angle = Math.PI/6
-  spotLight.intensity = 0.3
-  spotLight.decay=2
+  spotLight.intensity = 0.7
+  spotLight.decay=5
+  spotLight.distance=2000
   spotLight.shadow.camera.near = 10;
   spotLight.shadow.camera.far = 20;
   lightHelper = new THREE.SpotLightHelper(spotLight);

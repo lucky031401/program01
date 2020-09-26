@@ -1,16 +1,23 @@
-let vid
+let videos = []
+let videoPos = []
 function createVideo() {
-    for (let k = 0; k < 1; k++) {
-        var video = document.getElementById('video1')
+    for (let k = 0; k < 4; k++) {
+        setVidPos()
+        var video = document.getElementById('video'+k)
         video.play()
-        var frame = new THREE.PlaneGeometry(700,420);
+        var frame = new THREE.PlaneGeometry(500,300);
         var texture = new THREE.VideoTexture(video);
         texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
         texture.minFilter = THREE.LinearFilter;
-        let frameMaterial = new THREE.MeshBasicMaterial({ map: texture })
+        let frameMaterial = new THREE.MeshPhongMaterial({ map: texture })
         vid = new THREE.Mesh(frame, frameMaterial);
-        vid.position.set(1184,300,0)
+        vid.position.set(videoPos[k].x,videoPos[k].y,videoPos[k].z)
         vid.rotation.y=-Math.PI/2
+        videos.push(vid)
         scene.add(vid)
     }
+}
+
+function setVidPos(){
+    for (var i=0;i<4;i++) videoPos[i] = new THREE.Vector3(1183,300,-1750+i*700)
 }
