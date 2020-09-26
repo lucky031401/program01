@@ -50,6 +50,7 @@ body {
   100% {width: 1px;}
 }
 
+
 .hidden {
   display: none;
 }
@@ -84,7 +85,7 @@ video{
     -moz-border-radius: 20px;
     height:70%;  
     width:60%;  
-    transition: all 1s linear;
+    transition: all 0.5s linear;
     padding: 40px;
 }  
 

@@ -45,6 +45,15 @@ function initPointerLockControls() {
     instructions.addEventListener(
       'click',
       function(event) {
+        navIn.classList.add('visuallyhidden'); 
+      navIn.classList.remove('visuallyShow')  
+      navIn.addEventListener('transitionend', function(e) {
+        navIn.classList.add('hidden');
+      }, {
+        capture: false,
+        once: true,
+        passive: false
+      });
         camMode=1
         instructions.style.display = 'none'
         // Ask the browser to lock the pointer

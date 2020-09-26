@@ -1,6 +1,7 @@
 let instruction = document.getElementById("instruction")
 let  closeBtn = document.getElementById("close")
 let navIn = document.getElementById("navIn")
+let blocker1 = document.getElementById("blocker1")
 instruction.addEventListener("click", function(){
     if (navIn.classList.contains('hidden')) {
       navIn.classList.remove('hidden');
