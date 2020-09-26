@@ -37,16 +37,17 @@ function createWall() {
         world.addBody(boxBody)
         wallMesh.push(boxBody)
     }
-    var geometry = new THREE.BoxGeometry(30, 420, 3000);
+    var geometry = new THREE.BoxGeometry(30, 800, 3000);
         //var texture = new THREE.TextureLoader().load('./img/wall.jpg');
         var material = new THREE.MeshPhongMaterial({
             //map: texture,
-            color:0xeeeeee,
-            side: THREE.DoubleSide
+            color:0x999999,
+            side: THREE.DoubleSide,
+            metalness:0
         });
         geometry.scale(-1, 1, 1);
         mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(1200, 200, -700)
+        mesh.position.set(1200, 400, -700)
         mesh.name = 'wall'
         mesh.castShadow = true
         scene.add(mesh);
@@ -58,7 +59,7 @@ function createWall() {
             material: physicsMaterial
         })
         boxBody.addShape(boxShape)
-        boxBody.position.set(1200, 200, -700)
+        boxBody.position.set(1200, 300, -700)
         boxBody.linearDamping = 0.9
         world.addBody(boxBody)
         //wallMesh.push(boxBody)
@@ -219,7 +220,6 @@ function createLight() {
   spotLight.target = photos[i]
   spotLight.castShadow = true;
   spotLight.angle = Math.PI/6
-  console.log(spotLight.target)
   spotLight.intensity = 0.3
   spotLight.decay=2
   spotLight.shadow.camera.near = 10;

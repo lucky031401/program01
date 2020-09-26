@@ -26,6 +26,7 @@ function init() {
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
 
+    createVideo()
     initCannon()
     createGround()
     cameraSet(scene)
@@ -53,12 +54,11 @@ function init() {
     createTower()
     document.getElementById('video1').style.display = 'none'
 
-    var hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+    var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff );
     hemiLight.position.set( 1000, 300, 1000 );
     scene.add( hemiLight );
     var light = new THREE.AmbientLight(0xdddddd); // soft white light
-    light.intensity = 1.3
-    scene.add(light);
+    //scene.add(light);
     /*
     var rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
     rectLight.position.set( -350, 249, -700 );
@@ -82,6 +82,7 @@ function setCameraControl() {
 function render() {
     //pointsAnimation()
     stats.update()
+    vid.needsUpdate = true
     //cameraControl.update()
     //.update()
     //getPositon(draw2,playerBody)
