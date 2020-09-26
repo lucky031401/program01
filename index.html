@@ -5,9 +5,10 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+
     <!-- As a link -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">線上展覽館</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -16,8 +17,8 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+          <li class="nav-item" id="instruction">
+            <a class="nav-link" href="#" >INSTRUCTIONS</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Pricing</a>
@@ -36,6 +37,12 @@
       </div>
     </nav>
     <div id="stats">
+      <DIV id="navIn" style="background-color:#dddddd;line-height:80px;">測試文字垂直置中測試文字垂直置中測試文字垂直置中測試文字垂直置中測試文字垂直置中測試文字垂直置中測試文字垂直置中測試文字垂直置中
+        <button type="button" class="close" aria-label="Close" id="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </DIV>
+      </div>
       <div id="blocker">
         <div id="instructions">
           <span style="font-size:40px">點擊開始</span>
@@ -70,6 +77,7 @@
     <script src="./js/loaders.js"></script>
     <script src="js/movements.js"></script>
     <script src="./js/picture2.js"></script>
+    <script src="./js/navbar.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
