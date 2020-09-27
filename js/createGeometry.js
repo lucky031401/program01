@@ -9,6 +9,7 @@ const particleCount = 15000
 let points
 
 function createWall() {
+    //wall section1
     for (i = 0; i < 5; i++) {
         var geometry = new THREE.BoxGeometry(sizeX[i], 420, sizeZ[i]);
         var texture = new THREE.TextureLoader().load('./img/wall.jpg');
@@ -35,8 +36,34 @@ function createWall() {
         boxBody.linearDamping = 0.9
         world.addBody(boxBody)
         wallMesh.push(boxBody)
-        console.dir(geometry)
     }
+    var geometry = new THREE.BoxGeometry(30, 800, 3100);
+        //var texture = new THREE.TextureLoader().load('./img/wall.jpg');
+        var material = new THREE.MeshPhongMaterial({
+            //map: texture,
+            color:0x999999,
+            side: THREE.DoubleSide,
+            metalness:0
+        });
+        geometry.scale(-1, 1, 1);
+        mesh = new THREE.Mesh(geometry, material);
+        mesh.position.set(1200, 400, -800)
+        mesh.name = 'wall'
+        mesh.castShadow = true
+        scene.add(mesh);
+        walls.push(mesh)
+        const halfExtents = new CANNON.Vec3(30 + 250, 200, 3100/2 + 250)
+        const boxShape = new CANNON.Box(halfExtents)
+        const boxBody = new CANNON.Body({
+            mass: 0,
+            material: physicsMaterial
+        })
+        boxBody.addShape(boxShape)
+        boxBody.position.set(1200, 300, -700)
+        boxBody.linearDamping = 0.9
+        world.addBody(boxBody)
+        //wallMesh.push(boxBody)
+
 }
 
 
@@ -132,7 +159,7 @@ function createGround() {
     groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1, 0, 0), -Math.PI / 2)
     world.add(groundBody)
 
-    const groundGeometry = new THREE.PlaneGeometry(1000, 1400, 50, 50)
+    const groundGeometry = new THREE.PlaneGeometry(10000, 14000, 50, 50)
     const groundMaterial = new THREE.MeshLambertMaterial({
         color: 0xa5a5a5,
         metalness: 1,
@@ -161,7 +188,7 @@ function createGround() {
 
 //create celling
 function createCelling() {
-    const boxGeometry = new THREE.BoxGeometry(700, 1000, 10)
+    const boxGeometry = new THREE.BoxGeometry(1000, 1400, 10)
     var texture = new THREE.TextureLoader().load('./img/wall.jpg');
     var material = new THREE.MeshBasicMaterial({
         color: 0x222222,
@@ -170,16 +197,16 @@ function createCelling() {
     });
     boxGeometry.scale(-1, 1, 1);
     mesh = new THREE.Mesh(boxGeometry, material);
-    mesh.position.set(0, 420, 0)
+    mesh.position.set(0, 500, 0)
     mesh.rotation.x = Math.PI / 2
     mesh.castShadow = true
-    scene.add(mesh)
+    //scene.add(mesh)
 }
 
 
 function createLight() {
     var light = new THREE.HemisphereLight( 0xffffbb, 0x222222, 0.7 );
-    light.distance=200
+    light.distance=300
     light.position.set(0,200,-600)
     //scene.add( light );
     for(var i=0;i<8;i++){
@@ -193,9 +220,9 @@ function createLight() {
   spotLight.target = photos[i]
   spotLight.castShadow = true;
   spotLight.angle = Math.PI/6
-  console.log(spotLight.target)
-  spotLight.intensity = 0.3
-  spotLight.decay=2
+  spotLight.intensity = 0.7
+  spotLight.decay=5
+  spotLight.distance=2000
   spotLight.shadow.camera.near = 10;
   spotLight.shadow.camera.far = 20;
   lightHelper = new THREE.SpotLightHelper(spotLight);

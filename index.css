@@ -53,14 +53,22 @@ body {
 
 .hidden {
   display: none;
+  transition: all 0.5s linear;
+}
+
+.init{
+    display: none;
+    opacity: 0;
 }
 
 .visuallyhidden {
   opacity: 0;
+  transition: all 0.5s linear;
 }
 
 .visuallyShow {
   opacity: 0.77;
+  transition: all 0.5s linear;
 }
 
 video{
@@ -85,7 +93,6 @@ video{
     -moz-border-radius: 20px;
     height:70%;  
     width:60%;  
-    transition: all 0.5s linear;
     padding: 40px;
 }  
 

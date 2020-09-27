@@ -26,6 +26,7 @@ function init() {
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
 
+    createVideo()
     initCannon()
     createGround()
     cameraSet(scene)
@@ -34,7 +35,7 @@ function init() {
     createBoxes(1)
     createCelling()
     createDraw()
-    addHelpers(scene)
+    //addHelpers(scene)
     stats = initStats()
     createLight()
     //createBoxes(10)
@@ -50,26 +51,17 @@ function init() {
     initPointerLockControls()
     // 產生苦力怕物體
     createSphere()
-    //createTower()
+    createTower()
+    
+    document.getElementById('video0').style.display = 'none'
     document.getElementById('video1').style.display = 'none'
-
-    lightHelper = new THREE.SpotLightHelper(spotLight);
-   // lightHelper.target = photos[1]
-    //scene.add(lightHelper);
-
-    var light = new THREE.AmbientLight(0xeeeeee); // soft white light
-    light.intensity = 1.3
+    document.getElementById('video2').style.display = 'none'
+    document.getElementById('video3').style.display = 'none'
+    var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff );
+    hemiLight.position.set( 1000, 300, 1000 );
+    //scene.add( hemiLight );
+    var light = new THREE.AmbientLight(0xdddddd); // soft white light
     scene.add(light);
-    /*
-    var rectLight = new THREE.RectAreaLight( 0xffffff, intensity,  width, height );
-    rectLight.position.set( -350, 249, -700 );
-    rectLight.rotation.y=Math.PI/2
-    rectLight.lookAt( 0, 3, 0 );
-    scene.add( rectLight )
-
-    rectLightHelper = new THREE.RectAreaLightHelper( rectLight );
-    rectLight.add( rectLightHelper );
-*/
 
     document.body.appendChild(renderer.domElement)
 }
@@ -83,6 +75,7 @@ function setCameraControl() {
 function render() {
     //pointsAnimation()
     stats.update()
+    vid.needsUpdate = true
     //cameraControl.update()
     //.update()
     //getPositon(draw2,playerBody)
@@ -90,21 +83,7 @@ function render() {
         world.step(dt)
     }
     controls.update(Date.now() - time)
-    /*if(playerBody.position.x>250||playerBody.position.z>370||playerBody.position.x<-250||playerBody.position.z<-350){
-        if(camMode=1){
-        playerBody.position.set(0,0,270)
-    const blocker = document.getElementById('blocker')
-    const instructions = document.getElementById('instructions')
-    controls.enabled = false
-    blocker.style.display = '-webkit-box'
-    blocker.style.display = '-moz-box'
-    blocker.style.display = 'box'
-    instructions.style.display = ''
-    setCameraControl()
-    }
-    else setCameraControl()
-    }*/
-    //console.log(playerBody.position)
+    
     time = Date.now()
     for (var i = 0; i < 5; i++) walls[i].position.copy(wallMesh[i].position)
     //console.log(playerBody.position)
