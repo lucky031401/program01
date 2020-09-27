@@ -1,7 +1,7 @@
 let photos = []
 let photoPos = []
 const skinMap = new THREE.TextureLoader().load('../img/draw/black.jpg')
-
+let files = []
 function createDraw() {
     setUpPos()
     for (let k = 0; k < 8; k++) {
@@ -70,6 +70,8 @@ function createDraw() {
         scene.add(mesh);
         scene.add(nameMesh)
         photos.push(frameMesh)
+        if(k==2||k==3||k==5){
+          files.push(mesh)}
     }
 }
 

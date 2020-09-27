@@ -26,7 +26,6 @@ function init() {
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
 
-    createVideo()
     initCannon()
     createGround()
     cameraSet(scene)
@@ -35,7 +34,7 @@ function init() {
     createBoxes(1)
     createCelling()
     createDraw()
-    //addHelpers(scene)
+    createVideo()
     stats = initStats()
     createLight()
     //createBoxes(10)
@@ -53,10 +52,7 @@ function init() {
     createSphere()
     createTower()
     
-    document.getElementById('video0').style.display = 'none'
-    document.getElementById('video1').style.display = 'none'
-    document.getElementById('video2').style.display = 'none'
-    document.getElementById('video3').style.display = 'none'
+    document.getElementById('videos').style.display = 'none'
     var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff );
     hemiLight.position.set( 1000, 300, 1000 );
     //scene.add( hemiLight );
