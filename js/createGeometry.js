@@ -12,7 +12,7 @@ function createWall() {
     //wall section1
     for (i = 0; i < 5; i++) {
         var geometry = new THREE.BoxGeometry(sizeX[i], 420, sizeZ[i]);
-        var texture = new THREE.TextureLoader().load('./img/wall.jpg');
+        var texture = new THREE.TextureLoader().load('./img/wall2.png');
         var material = new THREE.MeshBasicMaterial({
             map: texture,
             side: THREE.DoubleSide
