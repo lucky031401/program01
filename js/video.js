@@ -3,7 +3,7 @@ let videoPos = []
 function createVideo() {
     for (let k = 0; k < 4; k++) {
         setVidPos()
-        var video = document.getElementById('video'+k)
+        var video = document.getElementById('media'+(k+3))
         video.currentTime=5
         var frame = new THREE.PlaneGeometry(500,300);
         var texture = new THREE.VideoTexture(video);
@@ -15,6 +15,7 @@ function createVideo() {
         vid.rotation.y=-Math.PI/2
         videos.push(vid)
         scene.add(vid)
+        files.push(vid)
     }
 }
 

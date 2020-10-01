@@ -2,7 +2,6 @@ let instruction = document.getElementById("instruction")
 let  closeBtn = document.getElementById("close")
 let navIn = document.getElementById("navIn")
 let blocker1 = document.getElementById("blocker1")
-navIn.classList.add('init')
 instruction.addEventListener("click", function(){
     if (navIn.classList.contains('hidden')) {
       navIn.classList.remove('hidden');
@@ -11,7 +10,7 @@ instruction.addEventListener("click", function(){
         navIn.classList.add('visuallyShow');   
     }, 20);
     } else {
-        navIn.classList.remove('init')
+        navIn.style.visibility = 'visible'
         navIn.classList.add('visuallyShow');   
     }
   })
