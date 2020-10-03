@@ -23,13 +23,13 @@ const loader = new THREE.OBJLoader()
 function createTower() {
     let towerBumpMat = new THREE.MeshStandardMaterial()
     towerBumpMat.map = new THREE.TextureLoader().load(
-        './modules/obj/grass/grass.jpeg'
+        '../model/textures/lion.jpg'
     )
-    // towerBumpMat.bumpMap = textureLoader.load(
-    //   './obj/tower/textures/Wood_Tower_Nor.jpg'
-    // )
-    // towerBumpMat.bumpScale = 1
-    loader.load('./modules/obj/grass/grass.obj', function(loadedMesh) {
+     towerBumpMat.bumpMap = new THREE.TextureLoader().load(
+       '../model/textures/lion.jpg'
+     )
+     towerBumpMat.bumpScale = 1
+    loader.load('./model/source/lion.obj', function(loadedMesh) {
             let brick = new THREE.Object3D()
             brick = loadedMesh.clone()
             loadedMesh.children.forEach(function(child) {
@@ -37,19 +37,15 @@ function createTower() {
                 child.geometry.computeFaceNormals()
                 child.geometry.computeVertexNormals()
             })
-            for(var i=0;i<10;i++){
-                brick.position.set(i*10,-5,i*10)
-                scene.add(brick)
-            }
-        /*loadedMesh.children.forEach(function(child) {
+        loadedMesh.children.forEach(function(child) {
             child.material = towerBumpMat
             child.geometry.computeFaceNormals()
             child.geometry.computeVertexNormals()
         })
-        loadedMesh.scale.set(1, 1, 1)
-        loadedMesh.position.set(0, -5, 100)
-        //loadedMesh.rotation.z=Math.PI/2
+        loadedMesh.scale.set(-500, 500, 500)
+        loadedMesh.position.set(0, 0, 100)
+        //loadedMesh.rotation.z=-Math.PI/2
         loadedMesh.castShadow = true
-        scene.add(loadedMesh)*/
+        scene.add(loadedMesh)
     })
 }
