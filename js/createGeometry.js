@@ -1,17 +1,17 @@
 let walls = []
 let wallMesh = []
-let wallPosX = [350, 475, 0, -475, -350]
-let wallPosZ = [685, 0, -685, 0, 685]
-let sizeX = [300, 30, 1000, 30, 300]
-let sizeZ = [30, 1340, 30, 1340, 30]
+let wallPosX = [350, 475, 0, -475, -350,350]
+let wallPosZ = [685, 0, -685, -850, 685,-2380]
+let sizeX = [300, 30, 975, 30, 300,1675]
+let sizeZ = [30, 1340, 30, 3100, 30,30]
 // points
 const particleCount = 15000
 let points
 
 function createWall() {
     //wall section1
-    for (i = 0; i < 5; i++) {
-        var geometry = new THREE.BoxGeometry(sizeX[i], 420, sizeZ[i]);
+    for (i = 0; i < 6; i++) {
+        var geometry = new THREE.BoxGeometry(sizeX[i], 800, sizeZ[i]);
         var texture = new THREE.TextureLoader().load('./img/wall2.png');
         var material = new THREE.MeshBasicMaterial({
             map: texture,
@@ -41,30 +41,29 @@ function createWall() {
         //var texture = new THREE.TextureLoader().load('./img/wall.jpg');
         var material = new THREE.MeshPhongMaterial({
             //map: texture,
-            color:0x999999,
+            color:0xeeeeee,
             side: THREE.DoubleSide,
             metalness:0
         });
         geometry.scale(-1, 1, 1);
         mesh = new THREE.Mesh(geometry, material);
-        mesh.position.set(1200, 400, -800)
+        mesh.position.set(1200, 200, -850)
         mesh.name = 'wall'
         mesh.castShadow = true
         scene.add(mesh);
         walls.push(mesh)
-        const halfExtents = new CANNON.Vec3(30 + 250, 200, 3100/2 + 250)
+        const halfExtents = new CANNON.Vec3(30 + 250, 400, 3100/2 + 250)
         const boxShape = new CANNON.Box(halfExtents)
         const boxBody = new CANNON.Body({
             mass: 0,
             material: physicsMaterial
         })
         boxBody.addShape(boxShape)
-        boxBody.position.set(1200, 300, -700)
+        boxBody.position.set(1200, 200, -700)
         boxBody.linearDamping = 0.9
         world.addBody(boxBody)
         //wallMesh.push(boxBody)
-
-}
+    }
 
 
 // 建立粒子系統
@@ -188,8 +187,8 @@ function createGround() {
 
 //create celling
 function createCelling() {
-    const boxGeometry = new THREE.BoxGeometry(1000, 1400, 10)
-    var texture = new THREE.TextureLoader().load('./img/wall.jpg');
+    const boxGeometry = new THREE.BoxGeometry(1690, 3050, 10)
+    var texture = new THREE.TextureLoader().load('./img/wall2.png');
     var material = new THREE.MeshBasicMaterial({
         color: 0x222222,
         side: THREE.DoubleSide,
@@ -197,10 +196,10 @@ function createCelling() {
     });
     boxGeometry.scale(-1, 1, 1);
     mesh = new THREE.Mesh(boxGeometry, material);
-    mesh.position.set(0, 500, 0)
+    mesh.position.set(365, 595, -850)
     mesh.rotation.x = Math.PI / 2
     mesh.castShadow = true
-    //scene.add(mesh)
+    scene.add(mesh)
 }
 
 
@@ -210,7 +209,6 @@ function createLight() {
     light.position.set(0,200,-600)
     //scene.add( light );
     for(var i=0;i<8;i++){
-     
   spotLight = new THREE.SpotLight(0xffffff, 2);
   spotLight.position.copy(photos[i].position);
   spotLight.position.y=400
@@ -227,7 +225,7 @@ function createLight() {
   spotLight.shadow.camera.far = 20;
   lightHelper = new THREE.SpotLightHelper(spotLight);
   scene.add(spotLight);
-}
+    }
 }
 
 

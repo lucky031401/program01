@@ -50,15 +50,17 @@ function init() {
     initPointerLockControls()
     // 產生苦力怕物體
     createSphere()
-    createTower()
-    
+    //createTower()
+
     document.getElementById('videos').style.display = 'none'
     var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff );
     hemiLight.position.set( 1000, 300, 1000 );
-    //scene.add( hemiLight );
-    var light = new THREE.AmbientLight(0xdddddd); // soft white light
-    scene.add(light);
 
+    // 設置環境光提供輔助柔和白光
+  let ambientLight = new THREE.AmbientLight(0x404040)
+  scene.add(ambientLight)
+    var light = new THREE.AmbientLight(0xffffff); // soft white light
+    scene.add(light);
     document.body.appendChild(renderer.domElement)
 }
 
