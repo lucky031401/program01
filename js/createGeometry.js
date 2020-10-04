@@ -166,7 +166,7 @@ function createGround() {
 
     })
     groundMaterial.map = new THREE.TextureLoader().load(
-        './img/4.png'//'./img/3.jpg'
+        './img/4.png'
     )
     let ground = new THREE.Mesh(groundGeometry, groundMaterial)
     ground.rotation.x = -Math.PI / 2
