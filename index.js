@@ -26,6 +26,29 @@ function init() {
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
 
+
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath("https://threejs.org/examples/models/ obj/walt/");
+    mtlLoader.load('WaltHead.mtl', function(materials) {
+
+        materials.preload();
+
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.setPath("https://threejs.org/examples/models/obj/walt/");
+        objLoader.load('WaltHead.obj', function(object) {
+
+            mesh = object;
+            mesh.position.y = 100;
+            scene.add(mesh);
+
+        });
+
+    });
+
+
+
+
     initCannon()
     createGround()
     cameraSet(scene)
@@ -50,15 +73,19 @@ function init() {
     initPointerLockControls()
     // 產生苦力怕物體
     createSphere()
-    //createTower()
+    createTower()
+
+    var light = new THREE.PointLight(0xff0000, 5, 1000, 0.1);
+    light.position.set(0, 300, -1650);
+    scene.add(light);
 
     document.getElementById('videos').style.display = 'none'
-    var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff );
-    hemiLight.position.set( 1000, 300, 1000 );
+    var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff);
+    hemiLight.position.set(1000, 300, 1000);
 
     // 設置環境光提供輔助柔和白光
-  let ambientLight = new THREE.AmbientLight(0x404040)
-  scene.add(ambientLight)
+    let ambientLight = new THREE.AmbientLight(0x404040)
+    scene.add(ambientLight)
     var light = new THREE.AmbientLight(0xffffff); // soft white light
     scene.add(light);
     document.body.appendChild(renderer.domElement)
@@ -81,7 +108,7 @@ function render() {
         world.step(dt)
     }
     controls.update(Date.now() - time)
-    
+
     time = Date.now()
     for (var i = 0; i < 5; i++) walls[i].position.copy(wallMesh[i].position)
     //console.log(playerBody.position)
