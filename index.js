@@ -25,30 +25,52 @@ function init() {
     const sloader = new THREE.TextureLoader();
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
-
-
-    var mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setPath("https://threejs.org/examples/models/ obj/walt/");
-    mtlLoader.load('WaltHead.mtl', function(materials) {
-
-        materials.preload();
-
-        var objLoader = new THREE.OBJLoader();
-        objLoader.setMaterials(materials);
-        objLoader.setPath("https://threejs.org/examples/models/obj/walt/");
-        objLoader.load('WaltHead.obj', function(object) {
-
-            mesh = object;
-            mesh.position.y = 100;
-            scene.add(mesh);
-
-        });
-
+    const mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setMaterialOptions( { invertTrProperty: true } )
+    mtlLoader.setPath( "./model/" );
+    mtlLoader.load( 'spouse-1.mtl', function(materials) {
+      materials.preload();
+      let objLoader = new THREE.OBJLoader();
+      objLoader.setMaterials(materials);
+      objLoader.setPath("./model/");
+      objLoader.load('spouse-1.obj', function ( object ) {
+        object.scale.x =  object.scale.y =  object.scale.z = 100;
+        //object.rotation.y = 500;
+        let mesh = object;
+        mesh.position.y = 250;
+        scene.add( mesh );
+      });console.log();
     });
+   
 
 
+  var loader = new THREE.GLTFLoader();
+loader.load(
+    // resource URL
+    './model/gltfTest/ya/scene.gltf',
+    // called when the resource is loaded
+    function(gltf) {
+        mesh = gltf.scene;
+        gltf.animations // Array<THREE.AnimationClip>
+        gltf.scene // THREE.Scene
+        gltf.scenes // Array<THREE.Scene>
+        gltf.cameras // Array<THREE.Camera>
+        gltf.asset 
+        mesh.scale.set(500, 500, 500);
+        mesh.position.set(0, 0, 200)
+        scene.add(mesh)
+    },
+    // called when loading is in progresses
+    function(xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    },
+    // called when loading has errors
+    function(error) {
+        console.log('An error happened');
+    })
 
 
+    
     initCannon()
     createGround()
     cameraSet(scene)
@@ -64,6 +86,7 @@ function init() {
     // 渲染器設定
     renderer = new THREE.WebGLRenderer()
     renderer.setClearColor(0xeeeeee, 1.0)
+    renderer.gammaOutput = true
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = 2 // THREE.PCFSoftShadowMap
@@ -73,20 +96,14 @@ function init() {
     initPointerLockControls()
     // 產生苦力怕物體
     createSphere()
-    createTower()
+    //createTower()
 
     var light = new THREE.PointLight(0xff0000, 5, 1000, 0.1);
-    light.position.set(0, 300, -1650);
-    scene.add(light);
+    light.position.set(0, 0,0);
+    //scene.add(light);
 
     document.getElementById('videos').style.display = 'none'
-    var hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff);
-    hemiLight.position.set(1000, 300, 1000);
-
-    // 設置環境光提供輔助柔和白光
-    let ambientLight = new THREE.AmbientLight(0x404040)
-    scene.add(ambientLight)
-    var light = new THREE.AmbientLight(0xffffff); // soft white light
+    var light = new THREE.AmbientLight(0xffffff,1); // soft white light
     scene.add(light);
     document.body.appendChild(renderer.domElement)
 }

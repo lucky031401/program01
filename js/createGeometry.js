@@ -204,9 +204,6 @@ function createCelling() {
 
 
 function createLight() {
-    var light = new THREE.HemisphereLight( 0xffffbb, 0x222222, 0.7 );
-    light.distance=300
-    light.position.set(0,200,-600)
     //scene.add( light );
     for(var i=0;i<8;i++){
   spotLight = new THREE.SpotLight(0xffffff, 2);
