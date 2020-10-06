@@ -12,8 +12,8 @@ function createWall() {
     //wall section1
     for (i = 0; i < 6; i++) {
         var geometry = new THREE.BoxGeometry(sizeX[i], 800, sizeZ[i]);
-        var texture = new THREE.TextureLoader().load('./img/wall.jpg');
-        var material = new THREE.MeshPhongMaterial({
+        var texture = new THREE.TextureLoader().load('./img/wall2.png');
+        var material = new THREE.MeshBasicMaterial({
             map: texture,
             side: THREE.DoubleSide,
             metalness:0
@@ -167,7 +167,7 @@ function createGround() {
 
     })
     groundMaterial.map = new THREE.TextureLoader().load(
-        './img/3.jpg'
+        './img/4.png'
     )
     let ground = new THREE.Mesh(groundGeometry, groundMaterial)
     ground.rotation.x = -Math.PI / 2
@@ -189,8 +189,8 @@ function createGround() {
 //create celling
 function createCelling() {
     const boxGeometry = new THREE.BoxGeometry(1690, 3050, 10)
-    var texture = new THREE.TextureLoader().load('./img/wall.jpg');
-    var material = new THREE.MeshPhongMaterial({
+    var texture = new THREE.TextureLoader().load('./img/wall2.png');
+    var material = new THREE.MeshBasicMaterial({
         color: 0x222222,
         side: THREE.DoubleSide,
         opacity:0.3
