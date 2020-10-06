@@ -25,7 +25,7 @@ function init() {
     const sloader = new THREE.TextureLoader();
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
-    const mtlLoader = new THREE.MTLLoader();
+    /*const mtlLoader = new THREE.MTLLoader();
     mtlLoader.setMaterialOptions( { invertTrProperty: true } )
     mtlLoader.setPath( "./model/" );
     mtlLoader.load( 'spouse-1.mtl', function(materials) {
@@ -41,9 +41,9 @@ function init() {
         scene.add( mesh );
       });console.log();
     });
-   
+   */
 
-
+/*
   var loader = new THREE.GLTFLoader();
 loader.load(
     // resource URL
@@ -68,8 +68,77 @@ loader.load(
     function(error) {
         console.log('An error happened');
     })
+*//*
+var loader = new THREE.GLTFLoader();
+loader.load("./model/model3/scene.gltf", function(gltf) {  
+    mesh = gltf.scene;
+        gltf.animations // Array<THREE.AnimationClip>
+        gltf.scene // THREE.Scene
+        gltf.scenes // Array<THREE.Scene>
+        gltf.cameras // Array<THREE.Camera>
+        gltf.asset 
+        mesh.scale.set(50, 50, 50);
+        mesh.position.set(0, 0, 200)
+        scene.add(mesh)
+    },
+    // called when loading is in progresses
+    function(xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+    },
+    // called when loading has errors
+    function(error) {
+        console.log('An error happened');
+    
+ } )
+loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
+  function loadModel(url) {
+        return new Promise(resolve => {
+          new THREE.GLTFLoader().load(url, resolve);
+        });
+      }
 
 
+    let model1, model2, model3;
+    let p1 = loadModel('./model/model1/scene.gltf').then(result => {  model1 = result.scene.children[0]; });
+    let p2 = loadModel('./model/model2/scene.gltf').then(result => {  model2 = result.scene.children[0]; });
+    let p3 = loadModel('./model/model3/scene.gltf').then(result => {  model3 = result.scene.children[0];
+    });
+    Promise.all([p1,p2,p3]).then(() => {
+        //do something to the model
+        var path = './env2/';
+            var format = '.jpg';
+            var envMap = new THREE.CubeTextureLoader().load( [
+                path + 'px' + format, path + 'nx' + format,
+                path + 'py' + format, path + 'ny' + format,
+                path + 'pz' + format, path + 'nz' + format
+            ] );
+
+
+        model1.position.set(0,0,0);
+        model3.position.set(100,0,700);
+        //scene.background = envMap;
+        model3.traverse( function ( child ) {
+
+            if ( child.isMesh ) {
+
+                child.material.envMap =envMap;
+
+            }
+
+        } );
+        console.log(model2.children)
+        model2.position.set(200,0,0);
+        model1.scale.set(50,50,00)
+        model2.scale.set(50,50,50)
+        model3.scale.set(50,50,50)
+        //add model to the scene
+        //scene.add(model1);
+        scene.add(model2);
+        scene.add(model3);
+        
+        //continue the process
+        //startRenderLoop();
+     });
     
     initCannon()
     createGround()

@@ -1,4 +1,4 @@
-//let loader = new THREE.OBJLoader()
+let OBJloader = new THREE.OBJLoader()
 
 function createTower(amount) {
     for(var i=0;i<2;i++){
@@ -10,7 +10,7 @@ function createTower(amount) {
         '../model/textures/model0.jpg'
      )
      towerBumpMat.bumpScale = 1
-    loader.load('../model/source/model0.obj', function(loadedMesh) {
+    OBJloader.load('../model/source/model0.obj', function(loadedMesh) {
             let brick = new THREE.Object3D()
             brick = loadedMesh.clone()
             loadedMesh.children.forEach(function(child) {
@@ -24,7 +24,7 @@ function createTower(amount) {
             child.geometry.computeVertexNormals()
         })
         loadedMesh.scale.set(-300, 300, 300)
-        loadedMesh.position.set(0+300*i, 0, -1900)
+        //loadedMesh.position.set(0+300*i, 0, -1900)
         //loadedMesh.rotation.z=-Math.PI/2
         loadedMesh.castShadow = true
         let meshgroup=[]

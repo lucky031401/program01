@@ -172,7 +172,7 @@ function createGround() {
     ground.rotation.x = -Math.PI / 2
     ground.receiveShadow = true
     ground.name = 'floor'
-    scene.add(ground)
+    //scene.add(ground)
     const worldGeometry = new THREE.PlaneGeometry(300, 300, 50, 50)
     const worldMaterial = new THREE.MeshLambertMaterial({
         color: 0xa5a5a5,
