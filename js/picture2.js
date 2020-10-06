@@ -15,7 +15,7 @@ function createDraw() {
           if (i === 4) map1 = frameMap
           else map1 = skinMap
     
-          frameMaterials.push(new THREE.MeshPhongMaterial({ map: map1 }))
+          frameMaterials.push(new THREE.MeshPhongMaterial({ map: map1,metalness:0 }))
         }
         let frameMesh = new THREE.Mesh(frame, frameMaterials);
 
@@ -29,7 +29,7 @@ function createDraw() {
           if (i === 4) map1 = drawMap
           else map1 = skinMap
     
-          drawMaterials.push(new THREE.MeshPhongMaterial({ map: map1 }))
+          drawMaterials.push(new THREE.MeshPhongMaterial({ map: map1,metalness:0 }))
         }
 
         //add info
@@ -42,7 +42,7 @@ function createDraw() {
           if (i === 4) map1 = nameMap
           else map1 = skinMap
     
-          nameMaterials.push(new THREE.MeshPhongMaterial({ map: map1 }))
+          nameMaterials.push(new THREE.MeshPhongMaterial({ map: map1,metalness:0 }))
         }
         let nameMesh = new THREE.Mesh(name, nameMaterials);
         //geometry.scale(-1, 1, 1);

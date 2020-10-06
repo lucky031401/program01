@@ -13,9 +13,10 @@ function createWall() {
     for (i = 0; i < 6; i++) {
         var geometry = new THREE.BoxGeometry(sizeX[i], 800, sizeZ[i]);
         var texture = new THREE.TextureLoader().load('./img/wall.jpg');
-        var material = new THREE.MeshBasicMaterial({
+        var material = new THREE.MeshPhongMaterial({
             map: texture,
-            side: THREE.DoubleSide
+            side: THREE.DoubleSide,
+            metalness:0
         });
         geometry.scale(-1, 1, 1);
         mesh = new THREE.Mesh(geometry, material);
@@ -172,7 +173,7 @@ function createGround() {
     ground.rotation.x = -Math.PI / 2
     ground.receiveShadow = true
     ground.name = 'floor'
-    //scene.add(ground)
+    scene.add(ground)
     const worldGeometry = new THREE.PlaneGeometry(300, 300, 50, 50)
     const worldMaterial = new THREE.MeshLambertMaterial({
         color: 0xa5a5a5,
@@ -189,7 +190,7 @@ function createGround() {
 function createCelling() {
     const boxGeometry = new THREE.BoxGeometry(1690, 3050, 10)
     var texture = new THREE.TextureLoader().load('./img/wall.jpg');
-    var material = new THREE.MeshBasicMaterial({
+    var material = new THREE.MeshPhongMaterial({
         color: 0x222222,
         side: THREE.DoubleSide,
         opacity:0.3
@@ -206,7 +207,7 @@ function createCelling() {
 function createLight() {
     //scene.add( light );
     for(var i=0;i<8;i++){
-  spotLight = new THREE.SpotLight(0xffffff, 2);
+  spotLight = new THREE.SpotLight(0xffffff, 3);
   spotLight.position.copy(photos[i].position);
   spotLight.position.y=400
   if(i<3)spotLight.position.x-=300
@@ -222,6 +223,7 @@ function createLight() {
   spotLight.shadow.camera.far = 20;
   lightHelper = new THREE.SpotLightHelper(spotLight);
   scene.add(spotLight);
+  scene.add(lightHelper)
     }
 }
 

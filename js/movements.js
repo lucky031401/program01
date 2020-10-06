@@ -41,3 +41,16 @@ function dist2(){
     }
     if (min<650)return minNum
 }
+
+let area3 = document.getElementById('area3');
+area3.addEventListener('click',function(){
+    playerBody.position.set(500, 150, -1400)
+    console.log('click')
+},false)
+
+
+let area2 = document.getElementById('area2');
+area2.addEventListener('click',function(){
+    playerBody.position.set(800, 150, 700)
+    console.log('click')
+},false)

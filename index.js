@@ -113,23 +113,23 @@ loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
                 path + 'pz' + format, path + 'nz' + format
             ] );
 
-
-        model1.position.set(0,0,0);
-        model3.position.set(100,0,700);
         //scene.background = envMap;
-        model3.traverse( function ( child ) {
-
+        model2.traverse( function ( child ) {
             if ( child.isMesh ) {
-
                 child.material.envMap =envMap;
-
             }
-
+        } );
+        model3.traverse( function ( child ) {
+            if ( child.isMesh ) {
+                child.material.envMap =envMap;
+            }
         } );
         console.log(model2.children)
-        model2.position.set(200,0,0);
-        model1.scale.set(50,50,00)
-        model2.scale.set(50,50,50)
+        model1.position.set(0,0,0);
+        model2.scale.set(150,150,150)
+        model3.position.set(100,0,700);
+        model1.scale.set(150,150,150)
+        model2.scale.set(150,150,150)
         model3.scale.set(50,50,50)
         //add model to the scene
         //scene.add(model1);
@@ -155,9 +155,10 @@ loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
     // 渲染器設定
     renderer = new THREE.WebGLRenderer()
     renderer.setClearColor(0xeeeeee, 1.0)
-    renderer.gammaOutput = true
+    //renderer.gammaOutput = true
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.shadowMap.enabled = true
+    renderer.shadowMap.renderReverseSided = false;
     renderer.shadowMap.type = 2 // THREE.PCFSoftShadowMap
 
     // 建立 OrbitControls
@@ -167,13 +168,26 @@ loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
     createSphere()
     //createTower()
 
-    var light = new THREE.PointLight(0xff0000, 5, 1000, 0.1);
-    light.position.set(0, 0,0);
-    //scene.add(light);
+    var dirLight = new THREE.DirectionalLight( 0x0c0c0c );
+    dirLight.position.set( 1000, 100, 1000);
+    dirLight.castShadow = true;
+    dirLight.shadow.camera.top = 2;
+    dirLight.shadow.camera.bottom = - 2;
+    dirLight.shadow.camera.left = - 2;
+    dirLight.shadow.camera.right = 2;
+    dirLight.shadow.camera.near = 10000;
+    dirLight.shadow.camera.far = 40000;
+    scene.add( dirLight );
+     
+  let directionalLight = new THREE.DirectionalLight(0x222222,2)
+  directionalLight.position.set(100, 1000, 1000)
+  // directionalLight.castShadow = true
+  //scene.add(directionalLight)
+
 
     document.getElementById('videos').style.display = 'none'
-    var light = new THREE.AmbientLight(0xffffff,1); // soft white light
-    scene.add(light);
+    var light = new THREE.AmbientLight(0xcccccc,1.5); // soft white light
+   scene.add(light);
     document.body.appendChild(renderer.domElement)
 }
 
