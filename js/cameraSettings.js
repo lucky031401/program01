@@ -1,7 +1,7 @@
 let camera
 function cameraSet(scene){
     camera = new THREE.PerspectiveCamera(
-        45,
+        40,
         window.innerWidth / window.innerHeight,
         100,
         5000

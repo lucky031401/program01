@@ -172,7 +172,7 @@ function createGround() {
     ground.rotation.x = -Math.PI / 2
     ground.receiveShadow = true
     ground.name = 'floor'
-    scene.add(ground)
+    //scene.add(ground)
     const worldGeometry = new THREE.PlaneGeometry(300, 300, 50, 50)
     const worldMaterial = new THREE.MeshLambertMaterial({
         color: 0xa5a5a5,
@@ -204,9 +204,6 @@ function createCelling() {
 
 
 function createLight() {
-    var light = new THREE.HemisphereLight( 0xffffbb, 0x222222, 0.7 );
-    light.distance=300
-    light.position.set(0,200,-600)
     //scene.add( light );
     for(var i=0;i<8;i++){
   spotLight = new THREE.SpotLight(0xffffff, 2);
