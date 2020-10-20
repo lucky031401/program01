@@ -66,6 +66,20 @@ function createWall() {
         //wallMesh.push(boxBody)
     }
 
+function addBarrier(){
+    const halfExtents = new CANNON.Vec3(390,200,250)
+    const boxShape = new CANNON.Box(halfExtents)
+    const boxBody = new CANNON.Body({
+        mass: 0,
+        material: physicsMaterial
+    })
+    boxBody.addShape(boxShape)
+    boxBody.position.set(380, 200, -1414)
+    boxBody.linearDamping = 0.9
+    world.addBody(boxBody)
+}
+
+
 
 // 建立粒子系統
 function createPoints() {
@@ -257,4 +271,29 @@ function createSphere() {
 
 function sphereAnimation(INTERSECTED) {
     INTERSECTED.rotation.y += 0.002
+}
+
+
+function generateTexture() {
+
+    var canvas = document.createElement( 'canvas' );
+    canvas.width = 512;
+    canvas.height = 512;
+
+    var context = canvas.getContext( '2d' );
+
+    for ( var i = 0; i < 40000; i ++ ) {
+
+        context.fillStyle = 'hsl(0,0%,' + ( Math.random() * 50 + 50 ) + '%)';
+        context.beginPath();
+        context.arc( Math.random() * canvas.width, Math.random() * canvas.height, Math.random() + 0.15, 0, Math.PI * 2, true );
+        context.fill();
+
+    }
+
+    context.globalAlpha = 0.075;
+    context.globalCompositeOperation = 'lighter';
+
+    return canvas;
+
 }

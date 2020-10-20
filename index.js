@@ -43,103 +43,107 @@ function init() {
     });
    */
 
-/*
-  var loader = new THREE.GLTFLoader();
-loader.load(
-    // resource URL
-    './model/gltfTest/ya/scene.gltf',
-    // called when the resource is loaded
-    function(gltf) {
+    /*
+      var loader = new THREE.GLTFLoader();
+    loader.load(
+        // resource URL
+        './model/gltfTest/ya/scene.gltf',
+        // called when the resource is loaded
+        function(gltf) {
+            mesh = gltf.scene;
+            gltf.animations // Array<THREE.AnimationClip>
+            gltf.scene // THREE.Scene
+            gltf.scenes // Array<THREE.Scene>
+            gltf.cameras // Array<THREE.Camera>
+            gltf.asset 
+            mesh.scale.set(500, 500, 500);
+            mesh.position.set(0, 0, 200)
+            scene.add(mesh)
+        },
+        // called when loading is in progresses
+        function(xhr) {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        // called when loading has errors
+        function(error) {
+            console.log('An error happened');
+        })
+    */
+    /*
+    var loader = new THREE.GLTFLoader();
+    loader.load("./model/model3/scene.gltf", function(gltf) {  
         mesh = gltf.scene;
-        gltf.animations // Array<THREE.AnimationClip>
-        gltf.scene // THREE.Scene
-        gltf.scenes // Array<THREE.Scene>
-        gltf.cameras // Array<THREE.Camera>
-        gltf.asset 
-        mesh.scale.set(500, 500, 500);
-        mesh.position.set(0, 0, 200)
-        scene.add(mesh)
-    },
-    // called when loading is in progresses
-    function(xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    // called when loading has errors
-    function(error) {
-        console.log('An error happened');
-    })
-*//*
-var loader = new THREE.GLTFLoader();
-loader.load("./model/model3/scene.gltf", function(gltf) {  
-    mesh = gltf.scene;
-        gltf.animations // Array<THREE.AnimationClip>
-        gltf.scene // THREE.Scene
-        gltf.scenes // Array<THREE.Scene>
-        gltf.cameras // Array<THREE.Camera>
-        gltf.asset 
-        mesh.scale.set(50, 50, 50);
-        mesh.position.set(0, 0, 200)
-        scene.add(mesh)
-    },
-    // called when loading is in progresses
-    function(xhr) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    // called when loading has errors
-    function(error) {
-        console.log('An error happened');
-    
- } )
-loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
-  function loadModel(url) {
+            gltf.animations // Array<THREE.AnimationClip>
+            gltf.scene // THREE.Scene
+            gltf.scenes // Array<THREE.Scene>
+            gltf.cameras // Array<THREE.Camera>
+            gltf.asset 
+            mesh.scale.set(50, 50, 50);
+            mesh.position.set(0, 0, 200)
+            scene.add(mesh)
+        },
+        // called when loading is in progresses
+        function(xhr) {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        // called when loading has errors
+        function(error) {
+            console.log('An error happened');
+        
+     } )
+    loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
+    function loadModel(url) {
         return new Promise(resolve => {
-          new THREE.GLTFLoader().load(url, resolve);
+            new THREE.GLTFLoader().load(url, resolve);
         });
-      }
+    }
 
-
-    let model1, model2, model3;
-    let p1 = loadModel('./model/model1/scene.gltf').then(result => {  model1 = result.scene.children[0]; });
-    let p2 = loadModel('./model/model2/scene.gltf').then(result => {  model2 = result.scene.children[0]; });
-    let p3 = loadModel('./model/model3/scene.gltf').then(result => {  model3 = result.scene.children[0];
+    let p1 = loadModel('./model/model1/scene.gltf').then(result => {
+        model1 = result.scene.children[0];
     });
-    Promise.all([p1,p2,p3]).then(() => {
+    let p2 = loadModel('./model/model2/scene.gltf').then(result => {
+        model2 = result.scene.children[0];
+    });
+    let p3 = loadModel('./model/model3/scene.gltf').then(result => {
+        model3 = result.scene.children[0];
+    });
+    Promise.all([p1, p2, p3]).then(() => {
         //do something to the model
         var path = './env2/';
-            var format = '.jpg';
-            var envMap = new THREE.CubeTextureLoader().load( [
-                path + 'px' + format, path + 'nx' + format,
-                path + 'py' + format, path + 'ny' + format,
-                path + 'pz' + format, path + 'nz' + format
-            ] );
+        var format = '.jpg';
+        var envMap = new THREE.CubeTextureLoader().load([
+            path + 'px' + format, path + 'nx' + format,
+            path + 'py' + format, path + 'ny' + format,
+            path + 'pz' + format, path + 'nz' + format
+        ]);
 
         //scene.background = envMap;
-        model2.traverse( function ( child ) {
-            if ( child.isMesh ) {
-                child.material.envMap =envMap;
+        model2.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.envMap = envMap;
             }
-        } );
-        model3.traverse( function ( child ) {
-            if ( child.isMesh ) {
-                child.material.envMap =envMap;
+        });
+        model3.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.envMap = envMap;
             }
-        } );
+        });
         console.log(model2.children)
-        model1.position.set(0,0,0);
-        model2.scale.set(150,150,150)
-        model3.position.set(100,0,700);
-        model1.scale.set(150,150,150)
-        model2.scale.set(150,150,150)
-        model3.scale.set(50,50,50)
+        model1.position.set(600, 230,-1430);
+        model2.scale.set(150, 130, 150)
+        model3.position.set(100, 230, -1414);
+        model1.scale.set(10, 10, 10)
+        model2.scale.set(150, 200, 150)
+        model3.scale.set(30, 30, 30)
         //add model to the scene
-        //scene.add(model1);
-        scene.add(model2);
+        scene.add(model1);
+        //scene.add(model2);
         scene.add(model3);
-        
+
         //continue the process
         //startRenderLoop();
-     });
-    
+    });
+
     initCannon()
     createGround()
     cameraSet(scene)
@@ -151,6 +155,7 @@ loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
     createVideo()
     stats = initStats()
     createLight()
+    addBarrier()
     //createBoxes(10)
     // 渲染器設定
     renderer = new THREE.WebGLRenderer()
@@ -168,26 +173,26 @@ loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
     createSphere()
     //createTower()
 
-    var dirLight = new THREE.DirectionalLight( 0x0c0c0c );
-    dirLight.position.set( 1000, 100, 1000);
+    var dirLight = new THREE.DirectionalLight(0x0c0c0c);
+    dirLight.position.set(1000, 100, 1000);
     dirLight.castShadow = true;
     dirLight.shadow.camera.top = 2;
-    dirLight.shadow.camera.bottom = - 2;
-    dirLight.shadow.camera.left = - 2;
+    dirLight.shadow.camera.bottom = -2;
+    dirLight.shadow.camera.left = -2;
     dirLight.shadow.camera.right = 2;
     dirLight.shadow.camera.near = 10000;
     dirLight.shadow.camera.far = 40000;
-    scene.add( dirLight );
-     
-  let directionalLight = new THREE.DirectionalLight(0x222222,2)
-  directionalLight.position.set(100, 1000, 1000)
-  // directionalLight.castShadow = true
-  //scene.add(directionalLight)
+    scene.add(dirLight);
+
+    let directionalLight = new THREE.DirectionalLight(0x222222, 2)
+    directionalLight.position.set(100, 1000, 1000)
+    // directionalLight.castShadow = true
+    //scene.add(directionalLight)
 
 
     document.getElementById('videos').style.display = 'none'
-    var light = new THREE.AmbientLight(0xcccccc,1.5); // soft white light
-   scene.add(light);
+    var light = new THREE.AmbientLight(0xcccccc, 1.5); // soft white light
+    scene.add(light);
     document.body.appendChild(renderer.domElement)
 }
 
@@ -201,6 +206,7 @@ function render() {
     //pointsAnimation()
     stats.update()
     vid.needsUpdate = true
+    console.log(playerBody.position)
     //cameraControl.update()
     //.update()
     //getPositon(draw2,playerBody)

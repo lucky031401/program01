@@ -44,7 +44,7 @@ function dist2(){
 
 let area3 = document.getElementById('area3');
 area3.addEventListener('click',function(){
-    playerBody.position.set(500, 150, -1400)
+    playerBody.position.set(919, 150, -1100)
     console.log('click')
 },false)
 
