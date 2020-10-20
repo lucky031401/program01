@@ -5,6 +5,7 @@ let pointLight
 let raycaster = new THREE.Raycaster()
 let INTERSECTED = null,
     intersects
+let modelGroup=new THREE.Group()
 let mouse = new THREE.Vector2()
 let spotLight
 const intro0 = document.getElementById('intro_0')
@@ -40,7 +41,7 @@ function init() {
     let p3 = loadModel('./model/model3/scene.gltf').then(result => {
         model3 = result.scene.children[0];
     });
-    let p4 = loadModel('./model/model3/scene.gltf').then(result => {
+    let p4 = loadModel('./model/model4/scene.gltf').then(result => {
         model4 = result.scene.children[0];
     });
     Promise.all([p1, p2, p3,p4]).then(() => {
@@ -71,20 +72,33 @@ function init() {
                 console.log(child.material)
             }
         });
-
+        model4.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.envMap = envMap;
+                console.log(child.material)
+            }
+        });
+        
         model1.position.set(600, 230,-1430);
         model2.scale.set(15, 15, 15)
-        model3.position.set(100, 230, -1414);
+        model3.position.set(100, 200, -1414);
         model1.scale.set(10, 10, 10)
-        model2.position.set(580, 70, -1530)
+        model2.position.set(580, 70, -1630)
         model2.rotation.z=Math.PI
-        model3.scale.set(30, 30, 30)
-
+        model3.scale.set(25, 25, 25)
+        model4.position.set(100, 50, -1700)
+        model4.rotation.z=Math.PI
+        model4.scale.set(250,250,250)
         //add model to the scene
         scene.add(model1);
         scene.add(model2);
         scene.add(model3);
-
+        scene.add(model4)
+        /*modelGroup.add(model1)
+        modelGroup.add(model2)
+        modelGroup.add(model3)
+        *///modelGroup.add(model4)
+        
         //continue the process
         //startRenderLoop();
     });
@@ -167,25 +181,10 @@ function render() {
 
     renderer.render(scene, camera)
 
-    //raycaster.setFromCamera(mouse, camera);
-    //intersects = raycaster.intersectObjects(photos);
-    /*if (intersects.length > 0) {
-        INTERSECTED = intersects[0].object
-        console.log(INTERSECTED.name)
-        if(INTERSECTED.name<3){
-            if(INTERSECTED.position.distanceTo(playerBody.position)<300)
-            intro0.play()
-            //console.log(mouse)
-        }
-        //INTERSECTED.scale.set(-0.5, 0.5, 0.5);
-        //sphereAnimation(INTERSECTED)
-        //INTERSECTED.position.set(camera.position.x, camera.position.y, camera.position.z)
-        //cameraControl.enablePan=false
-        //cameraControl.enableRotate=false
-        for (i = 0; i < 4; i++) {
-            if (spheres[i].name != INTERSECTED.name) spheres[i].visible = false
-        }
-    }*/
+    raycaster.setFromCamera(mouse, camera);
+    intersects = raycaster.intersectObjects(photos);
+    if (intersects.length > 0) {
+    }
     /*else {
         intro0.pause()
         intro0.currentTime = 0
