@@ -25,73 +25,6 @@ function init() {
     const sloader = new THREE.TextureLoader();
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
-    /*const mtlLoader = new THREE.MTLLoader();
-    mtlLoader.setMaterialOptions( { invertTrProperty: true } )
-    mtlLoader.setPath( "./model/" );
-    mtlLoader.load( 'spouse-1.mtl', function(materials) {
-      materials.preload();
-      let objLoader = new THREE.OBJLoader();
-      objLoader.setMaterials(materials);
-      objLoader.setPath("./model/");
-      objLoader.load('spouse-1.obj', function ( object ) {
-        object.scale.x =  object.scale.y =  object.scale.z = 100;
-        //object.rotation.y = 500;
-        let mesh = object;
-        mesh.position.y = 250;
-        scene.add( mesh );
-      });console.log();
-    });
-   */
-
-    /*
-      var loader = new THREE.GLTFLoader();
-    loader.load(
-        // resource URL
-        './model/gltfTest/ya/scene.gltf',
-        // called when the resource is loaded
-        function(gltf) {
-            mesh = gltf.scene;
-            gltf.animations // Array<THREE.AnimationClip>
-            gltf.scene // THREE.Scene
-            gltf.scenes // Array<THREE.Scene>
-            gltf.cameras // Array<THREE.Camera>
-            gltf.asset 
-            mesh.scale.set(500, 500, 500);
-            mesh.position.set(0, 0, 200)
-            scene.add(mesh)
-        },
-        // called when loading is in progresses
-        function(xhr) {
-            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-        },
-        // called when loading has errors
-        function(error) {
-            console.log('An error happened');
-        })
-    */
-    /*
-    var loader = new THREE.GLTFLoader();
-    loader.load("./model/model3/scene.gltf", function(gltf) {  
-        mesh = gltf.scene;
-            gltf.animations // Array<THREE.AnimationClip>
-            gltf.scene // THREE.Scene
-            gltf.scenes // Array<THREE.Scene>
-            gltf.cameras // Array<THREE.Camera>
-            gltf.asset 
-            mesh.scale.set(50, 50, 50);
-            mesh.position.set(0, 0, 200)
-            scene.add(mesh)
-        },
-        // called when loading is in progresses
-        function(xhr) {
-            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-        },
-        // called when loading has errors
-        function(error) {
-            console.log('An error happened');
-        
-     } )
-    loader.load("./model/model2/scene.gltf", function(gltf) {   } )*/
     function loadModel(url) {
         return new Promise(resolve => {
             new THREE.GLTFLoader().load(url, resolve);
@@ -107,7 +40,10 @@ function init() {
     let p3 = loadModel('./model/model3/scene.gltf').then(result => {
         model3 = result.scene.children[0];
     });
-    Promise.all([p1, p2, p3]).then(() => {
+    let p4 = loadModel('./model/model3/scene.gltf').then(result => {
+        model4 = result.scene.children[0];
+    });
+    Promise.all([p1, p2, p3,p4]).then(() => {
         //do something to the model
         var path = './env2/';
         var format = '.jpg';
@@ -117,6 +53,12 @@ function init() {
             path + 'pz' + format, path + 'nz' + format
         ]);
 
+
+        model1.traverse(function(child) {
+            if (child.isMesh) {
+                child.material.envMap = envMap;
+            }
+        });
         //scene.background = envMap;
         model2.traverse(function(child) {
             if (child.isMesh) {
@@ -126,18 +68,21 @@ function init() {
         model3.traverse(function(child) {
             if (child.isMesh) {
                 child.material.envMap = envMap;
+                console.log(child.material)
             }
         });
-        console.log(model2.children)
+
         model1.position.set(600, 230,-1430);
-        model2.scale.set(150, 130, 150)
+        model2.scale.set(15, 15, 15)
         model3.position.set(100, 230, -1414);
         model1.scale.set(10, 10, 10)
-        model2.scale.set(150, 200, 150)
+        model2.position.set(580, 70, -1530)
+        model2.rotation.z=Math.PI
         model3.scale.set(30, 30, 30)
+
         //add model to the scene
         scene.add(model1);
-        //scene.add(model2);
+        scene.add(model2);
         scene.add(model3);
 
         //continue the process
