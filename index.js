@@ -5,7 +5,7 @@ let pointLight
 let raycaster = new THREE.Raycaster()
 let INTERSECTED = null,
     intersects
-let modelGroup=new THREE.Group()
+let modelGroup = new THREE.Group()
 let mouse = new THREE.Vector2()
 let spotLight
 const intro0 = document.getElementById('intro_0')
@@ -26,9 +26,29 @@ function init() {
     const sloader = new THREE.TextureLoader();
     const bgTexture = sloader.load('./img/scene.jpg');
     scene.background = bgTexture;
+
+    var manager = new THREE.LoadingManager();
+    manager.onStart = function(url, itemsLoaded, itemsTotal) {
+        console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+    };
+    manager.onLoad = function() {
+        console.log('Loading complete!');
+    };
+    manager.onProgress = function(url, itemsLoaded, itemsTotal) {
+
+        console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+
+    };
+
+    manager.onError = function(url) {
+
+        console.log('There was an error loading ' + url);
+
+    };
+
     function loadModel(url) {
         return new Promise(resolve => {
-            new THREE.GLTFLoader().load(url, resolve);
+            new THREE.GLTFLoader(manager).load(url, resolve);
         });
     }
 
@@ -44,7 +64,7 @@ function init() {
     let p4 = loadModel('./model/model4/scene.gltf').then(result => {
         model4 = result.scene.children[0];
     });
-    Promise.all([p1, p2, p3,p4]).then(() => {
+    Promise.all([p1, p2, p3, p4]).then(() => {
         //do something to the model
         var path = './env2/';
         var format = '.jpg';
@@ -78,17 +98,17 @@ function init() {
                 console.log(child.material)
             }
         });
-        
-        model1.position.set(600, 230,-1430);
+
+        model1.position.set(600, 230, -1430);
         model2.scale.set(15, 15, 15)
         model3.position.set(100, 200, -1414);
         model1.scale.set(10, 10, 10)
         model2.position.set(580, 70, -1630)
-        model2.rotation.z=Math.PI
+        model2.rotation.z = Math.PI
         model3.scale.set(25, 25, 25)
         model4.position.set(100, 50, -1700)
-        model4.rotation.z=Math.PI
-        model4.scale.set(250,250,250)
+        model4.rotation.z = Math.PI
+        model4.scale.set(250, 250, 250)
         //add model to the scene
         scene.add(model1);
         scene.add(model2);
@@ -97,8 +117,8 @@ function init() {
         /*modelGroup.add(model1)
         modelGroup.add(model2)
         modelGroup.add(model3)
-        *///modelGroup.add(model4)
-        
+        */ //modelGroup.add(model4)
+
         //continue the process
         //startRenderLoop();
     });
@@ -165,7 +185,7 @@ function render() {
     //pointsAnimation()
     stats.update()
     vid.needsUpdate = true
-    console.log(playerBody.position)
+    //console.log(playerBody.position)
     //cameraControl.update()
     //.update()
     //getPositon(draw2,playerBody)
@@ -183,8 +203,7 @@ function render() {
 
     raycaster.setFromCamera(mouse, camera);
     intersects = raycaster.intersectObjects(photos);
-    if (intersects.length > 0) {
-    }
+    if (intersects.length > 0) {}
     /*else {
         intro0.pause()
         intro0.currentTime = 0
