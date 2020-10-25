@@ -1,5 +1,4 @@
 let startBtn = document.getElementById('start')
-startBtn.addEventListener('click',function(){console.log("dsa")},false)
 function initPointerLockControls() {
   // 鼠標控制器初始化
   controls = new PointerLockControls(camera, playerBody)
@@ -20,9 +19,11 @@ function initPointerLockControls() {
         document.webkitPointerLockElement === element
       ) {
         controls.enabled = true
+        navIn.classList.add('hidden');
       } else {
         controls.enabled = false
         navbar.style.display = ''
+        //navIn.classList.add('hidden');
       }
     }
     const pointerlockerror = function(event) {
@@ -48,7 +49,6 @@ function initPointerLockControls() {
         navIn.classList.add('init'); 
         navIn.classList.remove('visuallyShow')  
         navIn.addEventListener('transitionend', function(e) {
-        navIn.classList.add('hidden');
       }, {
         capture: false,
         once: true,
