@@ -67,7 +67,7 @@ function createWall() {
     }
 
 function addBarrier(){
-    const halfExtents = new CANNON.Vec3(390,200,250)
+    const halfExtents = new CANNON.Vec3(390,200,400)
     const boxShape = new CANNON.Box(halfExtents)
     const boxBody = new CANNON.Body({
         mass: 0,
@@ -239,6 +239,10 @@ function createLight() {
   scene.add(spotLight);
   scene.add(lightHelper)
     }
+    var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1.5 ); 
+    scene.add( light )
+    light.position.set(500,500,-1700)
+    lightHelper = new THREE.HemisphereLightHelper(light);
 }
 
 

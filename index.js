@@ -5,9 +5,11 @@ let pointLight
 let raycaster = new THREE.Raycaster()
 let INTERSECTED = null,
     intersects
+let flag=0
 let modelGroup = new THREE.Group()
 let mouse = new THREE.Vector2()
 let spotLight
+
 const intro0 = document.getElementById('intro_0')
 const intro1 = document.getElementById('intro_1')
 const intro2 = document.getElementById('intro_2')
@@ -29,15 +31,15 @@ function init() {
 
     var manager = new THREE.LoadingManager();
     manager.onStart = function(url, itemsLoaded, itemsTotal) {
+    
         console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
     };
     manager.onLoad = function() {
-        console.log('Loading complete!');
+        flag++
+        console.log('Loading complete!'+flag);
     };
     manager.onProgress = function(url, itemsLoaded, itemsTotal) {
-
-        console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
-
+        console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.'+flag);
     };
 
     manager.onError = function(url) {
@@ -51,7 +53,6 @@ function init() {
             new THREE.GLTFLoader(manager).load(url, resolve);
         });
     }
-
     let p1 = loadModel('./model/model1/scene.gltf').then(result => {
         model1 = result.scene.children[0];
     });
@@ -74,7 +75,6 @@ function init() {
             path + 'pz' + format, path + 'nz' + format
         ]);
 
-
         model1.traverse(function(child) {
             if (child.isMesh) {
                 child.material.envMap = envMap;
@@ -89,16 +89,15 @@ function init() {
         model3.traverse(function(child) {
             if (child.isMesh) {
                 child.material.envMap = envMap;
-                console.log(child.material)
             }
         });
         model4.traverse(function(child) {
             if (child.isMesh) {
+                child.material = new THREE.MeshStandardMaterial();
                 child.material.envMap = envMap;
                 console.log(child.material)
             }
         });
-
         model1.position.set(600, 230, -1430);
         model2.scale.set(15, 15, 15)
         model3.position.set(100, 200, -1414);
@@ -108,21 +107,22 @@ function init() {
         model3.scale.set(25, 25, 25)
         model4.position.set(100, 50, -1700)
         model4.rotation.z = Math.PI
+
         model4.scale.set(250, 250, 250)
         //add model to the scene
         scene.add(model1);
         scene.add(model2);
         scene.add(model3);
         scene.add(model4)
-        /*modelGroup.add(model1)
-        modelGroup.add(model2)
-        modelGroup.add(model3)
-        */ //modelGroup.add(model4)
+        //modelGroup.add(model1)
+        //modelGroup.add(model2)
+        //modelGroup.add(model3)
+        //modelGroup.add(model4)
 
         //continue the process
         //startRenderLoop();
     });
-
+    
     initCannon()
     createGround()
     cameraSet(scene)
