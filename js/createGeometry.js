@@ -240,12 +240,11 @@ function createLight() {
         scene.add(spotLight);
         //scene.add(lightHelper)
     }
-    var spotLight = new THREE.SpotLight( 0xeeeeee,3 );
+    var spotLight = new THREE.SpotLight( 0xeeeeee,4 );
     spotLight.position.set( 500, 0, -1000 );
     spotLight.castShadow = true;
-    spotLight.angle=Math.PI*5/6
-    spotLight.shadow.mapSize.width = 1024;
-    spotLight.shadow.mapSize.height = 1024;
+    spotLight.angle=Math.PI/2
+    spotLight.distance=800
     spotLight.shadow.camera.near = 500;
     spotLight.shadow.camera.far = 4000;
     spotLight.shadow.camera.fov = 30;
@@ -255,11 +254,13 @@ function createLight() {
     spotLight.target = targetObject;
     scene.add( spotLight );
 
-    let light_back = new THREE.SpotLight( 0xeeeeee,3 );
+    lightHelper = new THREE.SpotLightHelper(spotLight);
+    scene.add(lightHelper)
+
+    let light_back = new THREE.SpotLight( 0xeeeeee,4 );
     light_back.position.set( 500, 0, -2100 );
-    light_back.angle=Math.PI/2
-    light_back.shadow.mapSize.width = 1024;
-    light_back.shadow.mapSize.height = 1024;
+    light_back.angle=Math.PI*5/6/2
+    light_back.distance =900
     light_back.shadow.camera.near = 500;
     light_back.shadow.camera.far = 4000;
     light_back.shadow.camera.fov = 30;
