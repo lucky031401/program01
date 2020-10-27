@@ -20,9 +20,12 @@ function initPointerLockControls() {
       ) {
         controls.enabled = true
         navIn.classList.add('hidden');
+
       } else {
         controls.enabled = false
         navbar.style.display = ''
+        $("#test").slideUp()
+        $("introduction").fadeOut()
         //navIn.classList.add('hidden');
       }
     }
@@ -90,54 +93,7 @@ function initPointerLockControls() {
         }
         }
       }
-      /*function(event) {
-        console.log('get')
-        navbar.style.display="none"
-        navIn.classList.add('visuallyShow');   
-        navIn.classList.add('init'); 
-        navIn.classList.remove('visuallyShow')  
-        navIn.addEventListener('transitionend', function(e) {
-        navIn.classList.add('hidden');
-      }, {
-        capture: false,
-        once: true,
-        passive: false
-      });
-        element.requestPointerLock =
-          element.requestPointerLock ||
-          element.mozRequestPointerLock ||
-          element.webkitRequestPointerLock
-        if (/Firefox/i.test(navigator.userAgent)) {
-          var fullscreenchange = function(event) {
-            if (
-              document.fullscreenElement === element ||
-              document.mozFullscreenElement === element ||
-              document.mozFullScreenElement === element
-            ) {
-              document.removeEventListener('fullscreenchange', fullscreenchange)
-              document.removeEventListener(
-                'mozfullscreenchange',
-                fullscreenchange
-              )
-              element.requestPointerLock()
-            }
-          }
-          document.addEventListener('fullscreenchange', fullscreenchange, false)
-          document.addEventListener(
-            'mozfullscreenchange',
-            fullscreenchange,
-            false
-          )
-          element.requestFullscreen =
-            element.requestFullscreen ||
-            element.mozRequestFullscreen ||
-            element.mozRequestFullScreen ||
-            element.webkitRequestFullscreen
-          element.requestFullscreen()
-        } else {
-          element.requestPointerLock()
-        }
-      }*/,
+      ,
       false
     )
   } 
