@@ -13,6 +13,7 @@ body {
   height: 100%;
   padding-bottom: 100%;
   position: fixed;
+  display: none;
   transition-property: width,opacity ;
   padding-left: 0%;
   transition-duration: 1.5s;
@@ -23,7 +24,7 @@ body {
 #introduction{
   width: 20em;
   left: 50%;
-  top:20%;
+  top:50%;
   transform: translate(-50%, -50%);
   position: absolute;
   display: none;

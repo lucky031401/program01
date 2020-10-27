@@ -1,9 +1,6 @@
-$("#test").hover(function(){
-    $("#introduction").fadeIn( 900 )
-    }
-)
-
-$("#test").mouseleave(function(){
-    $("#introduction").fadeOut(500)
-    }
-)
+$(document).keyup(function(event){
+    if(event.which==69&&controls.enabled==true){
+        $("#test").slideToggle(900);
+        $("#introduction").delay(950).fadeToggle(500)
+    };
+})
