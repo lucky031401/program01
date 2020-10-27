@@ -93,9 +93,7 @@ function init() {
         });
         model4.traverse(function(child) {
             if (child.isMesh) {
-                child.material = new THREE.MeshStandardMaterial();
                 child.material.envMap = envMap;
-                console.log(child.material)
             }
         });
         model1.position.set(600, 230, -1430);
@@ -105,10 +103,10 @@ function init() {
         model2.position.set(580, 70, -1630)
         model2.rotation.z = Math.PI
         model3.scale.set(25, 25, 25)
-        model4.position.set(100, 50, -1700)
+        model4.position.set(100, 130, -1700)
         model4.rotation.z = Math.PI
 
-        model4.scale.set(250, 250, 250)
+        model4.scale.set(50, 50, 50)
         //add model to the scene
         scene.add(model1);
         scene.add(model2);
@@ -163,9 +161,10 @@ function init() {
     dirLight.shadow.camera.far = 40000;
     scene.add(dirLight);
 
-    let directionalLight = new THREE.DirectionalLight(0x222222, 2)
+    /*let directionalLight = new THREE.DirectionalLight(0x222222, 2)
     directionalLight.position.set(100, 1000, 1000)
-    // directionalLight.castShadow = true
+    directionalLight.castShadow = true
+    */
     //scene.add(directionalLight)
 
 

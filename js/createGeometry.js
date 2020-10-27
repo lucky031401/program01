@@ -13,10 +13,11 @@ function createWall() {
     for (i = 0; i < 6; i++) {
         var geometry = new THREE.BoxGeometry(sizeX[i], 800, sizeZ[i]);
         var texture = new THREE.TextureLoader().load('./img/wall2.png');
-        var material = new THREE.MeshBasicMaterial({
+        var material = new THREE.MeshStandardMaterial({
             map: texture,
             side: THREE.DoubleSide,
-            metalness:0
+            metalness:0,
+            roughness:0.9
         });
         geometry.scale(-1, 1, 1);
         mesh = new THREE.Mesh(geometry, material);
@@ -221,28 +222,54 @@ function createCelling() {
 function createLight() {
     //scene.add( light );
     for(var i=0;i<8;i++){
-  spotLight = new THREE.SpotLight(0xffffff, 3);
-  spotLight.position.copy(photos[i].position);
-  spotLight.position.y=400
-  if(i<3)spotLight.position.x-=300
-  else if(i<5)spotLight.position.z+=300
-  else spotLight.position.x+=300
-  spotLight.target = photos[i]
-  spotLight.castShadow = true;
-  spotLight.angle = Math.PI/6
-  spotLight.intensity = 0.7
-  spotLight.decay=5
-  spotLight.distance=2000
-  spotLight.shadow.camera.near = 10;
-  spotLight.shadow.camera.far = 20;
-  lightHelper = new THREE.SpotLightHelper(spotLight);
-  scene.add(spotLight);
-  scene.add(lightHelper)
+        spotLight = new THREE.SpotLight(0xffffff, 3);
+        spotLight.position.copy(photos[i].position);
+        spotLight.position.y=400
+        if(i<3)spotLight.position.x-=300
+        else if(i<5)spotLight.position.z+=300
+        else spotLight.position.x+=300
+        spotLight.target = photos[i]
+        spotLight.castShadow = true;
+        spotLight.angle = Math.PI/6
+        spotLight.intensity = 0.7
+        spotLight.decay=5
+        spotLight.distance=2000
+        spotLight.shadow.camera.near = 10;
+        spotLight.shadow.camera.far = 20;
+        lightHelper = new THREE.SpotLightHelper(spotLight);
+        scene.add(spotLight);
+        //scene.add(lightHelper)
     }
-    var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1.5 ); 
-    scene.add( light )
-    light.position.set(500,500,-1700)
-    lightHelper = new THREE.HemisphereLightHelper(light);
+    var spotLight = new THREE.SpotLight( 0xeeeeee,3 );
+    spotLight.position.set( 500, 0, -1000 );
+    spotLight.castShadow = true;
+    spotLight.angle=Math.PI*5/6
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+    spotLight.shadow.camera.near = 500;
+    spotLight.shadow.camera.far = 4000;
+    spotLight.shadow.camera.fov = 30;
+    var targetObject = new THREE.Object3D();
+    targetObject.position.set(800, 230, -1430);
+    scene.add(targetObject);
+    spotLight.target = targetObject;
+    scene.add( spotLight );
+
+    let light_back = new THREE.SpotLight( 0xeeeeee,3 );
+    light_back.position.set( 500, 0, -2100 );
+    light_back.angle=Math.PI*5/6
+    light_back.shadow.mapSize.width = 1024;
+    light_back.shadow.mapSize.height = 1024;
+    light_back.shadow.camera.near = 500;
+    light_back.shadow.camera.far = 4000;
+    light_back.shadow.camera.fov = 30;
+    var targetObject = new THREE.Object3D();
+    targetObject.position.set(500, 230, -1430);
+    scene.add(targetObject);
+    light_back.target = targetObject;
+    lightHelper = new THREE.SpotLightHelper(light_back);
+    scene.add(light_back);
+    scene.add(lightHelper)
 }
 
 
