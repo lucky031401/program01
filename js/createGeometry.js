@@ -296,7 +296,7 @@ function createSphere() {
         mesh.position.set(posx[k], posy[k], posz[k])
         //console.log(posx, posy, posz)
         mesh.name = k
-        scene.add(mesh);
+        //scene.add(mesh);
         spheres.push(mesh)
     }
 }

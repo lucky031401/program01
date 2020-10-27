@@ -23,6 +23,10 @@ function initStats() {
 
 // 畫面初始化
 function init() {
+    var timeoutID = setTimeout(myAlert, 10000);
+    function myAlert() {
+        console.log('五秒鐘到了！');
+    }
     scene = new THREE.Scene()
     scene.fog = new THREE.FogExp2(0x000000, 0.0008)
     const sloader = new THREE.TextureLoader();

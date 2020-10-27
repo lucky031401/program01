@@ -21,13 +21,6 @@ function onClick(event) {
     
 }
 
-function dist(){
-    if(playerBody.position.distanceTo(photos[2].position)<400)return 0
-    else if(playerBody.position.distanceTo(photos[3].position)<400)return 1
-    else if(playerBody.position.distanceTo(photos[5].position)<400)return 2
-   // else if(playerBody.position.distanceTo)
-}
-
 function dist2(){
     let min = 10000
     let minNum = 9
