@@ -257,7 +257,7 @@ function createLight() {
 
     let light_back = new THREE.SpotLight( 0xeeeeee,3 );
     light_back.position.set( 500, 0, -2100 );
-    light_back.angle=Math.PI*5/6
+    light_back.angle=Math.PI/2
     light_back.shadow.mapSize.width = 1024;
     light_back.shadow.mapSize.height = 1024;
     light_back.shadow.camera.near = 500;

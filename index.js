@@ -97,10 +97,10 @@ function init() {
             }
         });
         model1.position.set(600, 230, -1430);
-        model2.scale.set(15, 15, 15)
+        model2.scale.set(50, 50, 50)
         model3.position.set(100, 200, -1414);
         model1.scale.set(10, 10, 10)
-        model2.position.set(580, 70, -1630)
+        model2.position.set(500, 130, -1630)
         model2.rotation.z = Math.PI
         model3.scale.set(25, 25, 25)
         model4.position.set(100, 130, -1700)
