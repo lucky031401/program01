@@ -107,7 +107,7 @@ function init() {
         model2.position.set(500, 130, -1630)
         model2.rotation.z = Math.PI
         model3.scale.set(25, 25, 25)
-        model4.position.set(100, 130, -1700)
+        model4.position.set(100, 150, -1700)
         model4.rotation.z = Math.PI
 
         model4.scale.set(50, 50, 50)

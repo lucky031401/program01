@@ -68,6 +68,7 @@ function createWall() {
     }
 
 function addBarrier(){
+    var geometry = new THREE.BoxGeometry(780, 50, 800);
     const halfExtents = new CANNON.Vec3(390,200,400)
     const boxShape = new CANNON.Box(halfExtents)
     const boxBody = new CANNON.Body({
