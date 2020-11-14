@@ -68,6 +68,18 @@ function createWall() {
     }
 
 function addBarrier(){
+    var geometry = new THREE.BoxGeometry(780, 50, 800);
+    var material = new THREE.MeshPhongMaterial({
+        //map: texture,
+        color:0x111111,
+        side: THREE.DoubleSide,
+        metalness:0.5,
+        roughness:0.3
+    });
+    geometry.scale(-1, 1, 1);
+    mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    mesh.position.set(380, 20, -1414)
     const halfExtents = new CANNON.Vec3(390,200,400)
     const boxShape = new CANNON.Box(halfExtents)
     const boxBody = new CANNON.Body({
