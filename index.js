@@ -100,14 +100,14 @@ function init() {
                 child.material.envMap = envMap;
             }
         });
-        model1.position.set(600, 230, -1430);
+        model1.position.set(600, 250, -1400);
         model2.scale.set(50, 50, 50)
-        model3.position.set(100, 200, -1414);
+        model3.position.set(200, 200, -1370);
         model1.scale.set(10, 10, 10)
-        model2.position.set(500, 130, -1630)
+        model2.position.set(600, 220, -1630)
         model2.rotation.z = Math.PI
         model3.scale.set(25, 25, 25)
-        model4.position.set(100, 150, -1700)
+        model4.position.set(200, 270, -1600)
         model4.rotation.z = Math.PI
 
         model4.scale.set(50, 50, 50)
@@ -116,13 +116,6 @@ function init() {
         scene.add(model2);
         scene.add(model3);
         scene.add(model4)
-        //modelGroup.add(model1)
-        //modelGroup.add(model2)
-        //modelGroup.add(model3)
-        //modelGroup.add(model4)
-
-        //continue the process
-        //startRenderLoop();
     });
     
     initCannon()
