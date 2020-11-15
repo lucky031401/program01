@@ -7,31 +7,40 @@ body {
   font-family: arial;
 }
 
-
-#test {
+#vid3 {
   background-color: skyblue;
   height: 100%;
   padding-bottom: 100%;
   position: fixed;
-  display: none;
   transition-property: width,opacity ;
   padding-left: 0%;
   transition-duration: 1.5s;
-  width:1%;
-  opacity: 1;
+  width:30%;
+  opacity: 0.77;
 }
 
 #introduction{
-  width: 20em;
-  left: 50%;
+  width: 70%;
+  height: 100%;
   top:50%;
+  padding-top: 20%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
-  display: none;
+  position: relative;
+
 }
 #test:hover{
   transition-property: width,opacity;
   transition-duration: 1.5s;
   width:30%;
   opacity: 0.7;
+}
+
+#block{
+  font-size: large;
+  margin: 10%;
+  top: 20px;
+  padding-top:20% ;
+  position: relative;
+  transform: translate(-50%, -50%);
 }

@@ -39,7 +39,6 @@ function init() {
         console.log('Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
     };
     manager.onLoad = function() {
-        flag++
         console.log('Loading complete!'+flag);
     };
     manager.onProgress = function(url, itemsLoaded, itemsTotal) {
@@ -47,9 +46,7 @@ function init() {
     };
 
     manager.onError = function(url) {
-
         console.log('There was an error loading ' + url);
-
     };
 
     function loadModel(url) {

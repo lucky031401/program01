@@ -1,0 +1,1 @@
+window.addEventListener("keydown", onDocumentKeyDown, false);
