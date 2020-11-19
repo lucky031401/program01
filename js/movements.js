@@ -49,7 +49,6 @@ area2.addEventListener('click',function(){
 
 $(document).keyup(function(event){
     if(event.which==69&&controls.enabled==true&&dist2()>=3){
-        console.log(dist2())
         switch (dist2()){
         case 3:
             $("#introduction").html("倫敦眼(The British Airways London Eye)位於英國倫敦泰晤士河南畔，鄰近西敏市的國會大樓和大笨鐘，又名千禧之輪(Millennium Wheel)，是世界首座景觀摩天輪，也是世界第二座大的景觀摩天輪；英國倫敦眼景觀摩天輪於西元1999年年底，為慶祝2000年千禧年的到來而開幕，是一座預定5年後拆除的暫時性建築，但相當受到當地民眾和遊客的歡迎，於是當地市議會便決定長期保留倫敦眼建築，2005年倫敦市長利文斯通表示堅決維護倫敦眼作為倫敦地標，讓更多來到英國倫敦旅遊的民眾感受倫敦眼之美，倫敦眼人氣並超過法國艾菲爾鐵塔、義大利比薩斜塔及美國自由女神像等傳統地標，成為世界最佳的旅遊景點。")

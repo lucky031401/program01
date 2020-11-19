@@ -20,6 +20,7 @@ function initPointerLockControls() {
       ) {
         controls.enabled = true
         navIn.classList.add('hidden');
+        console.log("fdf")
 
       } else {
         controls.enabled = false

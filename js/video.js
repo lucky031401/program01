@@ -26,8 +26,7 @@ function setVidPos(){
 
 function myAlert() {
     document.getElementById('start1').pause()
-    $("#startVid").css({"display":"none"})
-    $("#start1").css({"display":"none"})
-    $("#navbar").css({"display":"flex"})
+    $("#startVid").fadeOut(500)
+    navbar.style.display = ''
     console.log('五秒鐘到了！');
 }

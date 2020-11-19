@@ -78,9 +78,6 @@ body {
   left: 50%;
 }
 
-#navbar{
-  display: none;
-}
 #navIn{  
     position: fixed;
     font-size: 30px;
