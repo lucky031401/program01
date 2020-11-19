@@ -26,7 +26,6 @@ function dist2(){
     let minNum = 9
     for(var i = 0 ;i<7;i++){
         let distance = files[i].position.distanceTo(playerBody.position)
-        console.log(i,distance)
         if(distance<min){
             min=distance
             minNum=i
@@ -72,7 +71,7 @@ $(document).keyup(function(event){
             $("#test").slideToggle(900);
             $("#introduction").delay(950).fadeToggle(500)
         break;
-        
         }
     };
+    
 })

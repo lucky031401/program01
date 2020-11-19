@@ -22,3 +22,12 @@ function createVideo() {
 function setVidPos(){
     for (var i=0;i<4;i++) videoPos[i] = new THREE.Vector3(1183,300,-1750+i*700)
 }
+
+
+function myAlert() {
+    document.getElementById('start1').pause()
+    $("#startVid").css({"display":"none"})
+    $("#start1").css({"display":"none"})
+    $("#navbar").css({"display":"flex"})
+    console.log('五秒鐘到了！');
+}
