@@ -116,6 +116,7 @@ function init() {
     initCannon()
     createGround()
     cameraSet(scene)
+    setStatuePos()
     //createPoints()
     createWall()
     createBoxes(1)
@@ -125,6 +126,7 @@ function init() {
     stats = initStats()
     createLight()
     addBarrier()
+    statue_intro()
     //createBoxes(10)
     // 渲染器設定
     renderer = new THREE.WebGLRenderer()

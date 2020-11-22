@@ -23,7 +23,6 @@ function setVidPos(){
     for (var i=0;i<4;i++) videoPos[i] = new THREE.Vector3(1183,300,-1750+i*700)
 }
 
-
 function myAlert() {
     document.getElementById('start1').pause()
     $("#startVid").fadeOut(2000)

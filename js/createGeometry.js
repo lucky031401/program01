@@ -341,3 +341,32 @@ function generateTexture() {
     return canvas;
 
 }
+let statuePos=[]
+function statue_intro(){
+    for(var i=0;i<4;i++){
+        var statue_info = new THREE.BoxGeometry(100, 60, 2);
+        var statueMap = new THREE.TextureLoader().load('./img/statue/statue'+i+'.jpg');
+        const nameMaterials = []
+        for (let k = 0; k < 6; k++) {
+            let map1
+            if (k === 4) map1 = statueMap
+            else map1 = skinMap
+        
+            nameMaterials.push(new THREE.MeshBasicMaterial({ map: map1 }))
+        }
+        let nameMesh = new THREE.Mesh(statue_info, nameMaterials);
+        nameMesh.position.set(statuePos[i].x,statuePos[i].y,statuePos[i].z)
+        if(i>1){
+            nameMesh.rotation.y=Math.PI
+            nameMesh.rotation.x=Math.PI/4
+        }else nameMesh.rotation.x=-Math.PI/4
+        scene.add(nameMesh)
+    }
+}
+
+function setStatuePos(){
+    statuePos[0]= new THREE.Vector3(550, 80, -1100)
+    statuePos[1]= new THREE.Vector3(220, 80, -1100)
+    statuePos[2]= new THREE.Vector3(600, 80, -1730)
+    statuePos[3]= new THREE.Vector3(220, 80, -1730)
+}
