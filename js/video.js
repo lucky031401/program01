@@ -26,7 +26,7 @@ function setVidPos(){
 
 function myAlert() {
     document.getElementById('start1').pause()
-    $("#startVid").fadeOut(500)
+    $("#startVid").fadeOut(2000)
     navbar.style.display = ''
     console.log('五秒鐘到了！');
 }
