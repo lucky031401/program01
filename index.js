@@ -23,6 +23,7 @@ function initStats() {
 
 // 畫面初始化
 function init() {
+    $("#control").hide()
     navbar.style.display='none'
     var timeoutID = setTimeout(myAlert, 11000);
     scene = new THREE.Scene()

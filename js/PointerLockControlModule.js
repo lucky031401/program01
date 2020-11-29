@@ -26,6 +26,7 @@ function initPointerLockControls() {
         controls.enabled = false
         navbar.style.display = ''
         $("#test").slideUp()
+        $("#control").hide()
         $("introduction").fadeOut()
         //navIn.classList.add('hidden');
       }
@@ -47,8 +48,9 @@ function initPointerLockControls() {
     start.addEventListener(
       'click',
       event=>{
-        if (event.target ==area2 || event.target == area3||event.target == startBtn) {
+        if (event.target ==area1||event.target ==area2 || event.target == area3||event.target == startBtn) {
         navbar.style.display="none"
+        $("#control").show()
         navIn.classList.add('visuallyShow');   
         navIn.classList.add('init'); 
         navIn.classList.remove('visuallyShow')  

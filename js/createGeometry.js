@@ -267,7 +267,6 @@ function createLight() {
     scene.add( spotLight );
 
     lightHelper = new THREE.SpotLightHelper(spotLight);
-    scene.add(lightHelper)
 
     let light_back = new THREE.SpotLight( 0xeeeeee,4 );
     light_back.position.set( 500, 0, -2100 );
@@ -282,7 +281,6 @@ function createLight() {
     light_back.target = targetObject;
     lightHelper = new THREE.SpotLightHelper(light_back);
     scene.add(light_back);
-    scene.add(lightHelper)
 }
 
 

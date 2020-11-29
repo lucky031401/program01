@@ -47,6 +47,13 @@ area2.addEventListener('click',function(){
     console.log('click')
 },false)
 
+let area1 = document.getElementById('area1');
+area1.addEventListener('click',function(){
+    playerBody.position.set(0, 150, 500)
+    console.log('click')
+},false)
+
+
 $(document).keyup(function(event){
     if(event.which==69&&controls.enabled==true&&dist2()>=3){
         switch (dist2()){
