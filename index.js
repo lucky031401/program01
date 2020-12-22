@@ -25,7 +25,7 @@ function initStats() {
 function init() {
     $("#control").hide()
     navbar.style.display='none'
-    var timeoutID = setTimeout(myAlert, 11000);
+    var timeoutID = setTimeout(myAlert, 20000);
     scene = new THREE.Scene()
     scene.fog = new THREE.FogExp2(0x000000, 0.0008)
     const sloader = new THREE.TextureLoader();
